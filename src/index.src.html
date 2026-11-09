@@ -112,7 +112,7 @@ img{max-width:100%;display:block}
 .pat-fila span{flex:none;width:calc(var(--pat-c,360px) / 2);display:flex;align-items:center;justify-content:center;color:#5E6367;font-size:16px;font-weight:500;letter-spacing:.03em}
 .pat-fila img{width:104px;height:auto;filter:brightness(.62) contrast(1.2)}
 @keyframes fila{from{transform:translateX(0)}to{transform:translateX(calc(var(--pat-c,360px) * -1))}}
-.landing > .portada > .logo-cuadro{position:absolute;left:50%;top:calc(var(--header) + 28svh);z-index:5;width:min(46vw,460px);aspect-ratio:2.1/1;transform:translate(-50%,-50%);background:var(--crema);display:flex;align-items:center;justify-content:center;padding:clamp(20px,3.2vw,40px) clamp(28px,4.5vw,56px);box-shadow:0 30px 60px -34px rgba(19,32,38,.5)}
+.landing > .portada > .logo-cuadro{position:absolute;left:50%;top:calc(var(--header) + 28svh);z-index:5;width:min(46vw,460px);aspect-ratio:2.1/1;transform:translate(-50%,-50%);background:#fff;display:flex;align-items:center;justify-content:center;padding:clamp(20px,3.2vw,40px) clamp(28px,4.5vw,56px);box-shadow:0 30px 60px -34px rgba(19,32,38,.5)}
 .logo-cuadro::before{content:"";position:absolute;inset:12px;border:1px solid rgba(19,32,38,.55);pointer-events:none}
 .logo-cuadro h1{margin:0;width:100%}
 .logo-cuadro img{width:100%;height:auto}
@@ -150,7 +150,7 @@ img{max-width:100%;display:block}
 .env-etq span{color:var(--muted)}
 .env-nota{position:absolute;right:var(--m-r);bottom:32px;width:min(320px,40vw);text-align:right;font-family:var(--display);font-style:italic;font-size:var(--s-lead);line-height:1.3;transition:opacity .4s var(--ease),transform .4s var(--ease)}
 .env-nota.fuera{opacity:0;transform:translateY(8px)}
-@media (max-width:960px){.envases{height:520vh}.env-cab{width:auto;right:0;top:calc(var(--header) + 16px);gap:8px}.env-cab h2{font-size:9vw}.env-cab p{font-size:var(--s-small)}.env-etq{height:auto;bottom:20px;display:flex;flex-direction:column;gap:6px;padding-inline:var(--m-l)}.env-etq li{position:static;width:auto;transform:none;text-align:left}.env-nota{left:var(--m-l);right:var(--m-r);width:auto;text-align:left;bottom:auto;top:calc(var(--header) + 150px);font-size:var(--s-body)}}
+@media (max-width:960px){.envases{height:520vh}.env-cab{width:auto;right:0;top:calc(var(--header) + 16px);gap:8px}.env-cab h2{font-size:9vw}.env-cab p{font-size:var(--s-small)}.env-etq{height:auto;bottom:20px;display:flex;flex-direction:column;gap:6px;padding-inline:var(--m-l)}.env-etq li{position:static;width:auto;transform:none;text-align:left}.env-nota{left:var(--m-l);right:var(--m-r);width:auto;text-align:center;bottom:max(22px,env(safe-area-inset-bottom));top:auto}.env-etq{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding-bottom:max(18px,env(safe-area-inset-bottom))}.env-etq li{text-align:center;font-size:12px;line-height:1.35}.env-etq b{font-size:13px}}
 
 /* proceso: el vestido flota a la derecha mientras se cuenta cada etapa */
 .proceso{background:var(--tex2),var(--crema-2);padding-block:clamp(120px,12vw,180px) 0}
@@ -163,7 +163,15 @@ img{max-width:100%;display:block}
 .pasos-f p{max-width:44ch;color:var(--muted)}
 .pasos-f li:last-child{min-height:90vh}
 
-@media (max-width:960px){.pasos-f li{max-width:none;min-height:100svh;justify-content:flex-end;padding-bottom:12vh}.pasos-f li .caja-p{background:rgba(244,232,214,.92);padding:20px;margin-inline:-8px}}
+@media (max-width:960px){
+  .pasos-f li{max-width:none;min-height:0;opacity:1;position:sticky;top:calc(var(--header) + 52svh);margin-bottom:62svh;display:block}
+  .pasos-f li:last-child{min-height:0;margin-bottom:24svh}
+  .pasos-f li .caja-p{background:#fffaf2;padding:22px 20px 24px;margin-inline:-4px;box-shadow:0 -18px 40px -24px rgba(19,32,38,.35),0 1px 0 rgba(19,32,38,.06);min-height:min(40svh,320px);display:flex;flex-direction:column;gap:10px;position:relative}
+  .pasos-f li .caja-p::before{content:attr(data-n);font-family:var(--display);font-size:14px;letter-spacing:.14em;color:var(--muted)}
+  .pasos-f h3{font-size:clamp(1.6rem,7.4vw,2.2rem)}
+  .pasos-f p{font-size:15px;line-height:1.6}
+  .proc-cab{background:#fffaf2;padding:22px 20px;margin-inline:-4px;position:relative;margin-bottom:46svh}
+}
 
 /* final */
 .final{height:420vh;position:relative;background:var(--tex),var(--crema)}
@@ -175,7 +183,7 @@ img{max-width:100%;display:block}
 .sistema li{border-top:1px solid rgba(19,32,38,.18);padding-top:8px}
 .sistema b{display:block;font-weight:500;color:var(--noche)}
 .sistema span{color:var(--muted)}
-@media (max-width:960px){.final{height:400vh}.landing > .final > .final-pin{grid-template-columns:minmax(0,1fr);align-content:start;padding-top:calc(var(--header) + 16px)}.final-txt{grid-column:1;gap:10px}.final-txt h2{font-size:9vw}.final-txt p{font-size:var(--s-small)}.final-txt .btn{display:none}}
+@media (max-width:960px){.final{height:400vh}.landing > .final > .final-pin{grid-template-columns:minmax(0,1fr);align-content:start;padding-top:calc(var(--header) + 16px)}.final-txt{grid-column:1;gap:10px}.final-txt h2{font-size:9vw}.final-txt p{font-size:var(--s-small)}.final-txt .btn{display:none}.fin-etq{position:absolute;left:0;right:0;bottom:0;top:auto}}
 
 /* ---------- escena 3D: medidas reales en centímetros (--u = píxeles por cm) ---------- */
 .escena{position:fixed;inset:0;z-index:4;pointer-events:none;overflow:hidden}
@@ -832,12 +840,12 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
         <p class="lead rev" style="--i:1">Desde la primera charla hasta la entrega, cada paso lo hago con vos.</p>
       </div>
       <ol class="pasos-f" id="pasos-f">
-        <li><div class="caja-p"><h3>Nos conocemos.</h3><p>La primera entrevista no tiene costo y dura entre una hora y una hora y media, en general los sábados. Me contás para qué momento es tu vestido, me mostrás tus fotos de Pinterest y hablamos de lo que te gusta, de lo que no y de cómo te querés sentir ese día.</p></div></li>
-        <li><div class="caja-p"><h3>Dibujo tu vestido a mano.</h3><p>Lo boceto ahí mismo, mientras charlamos. Pienso en tu cuerpo, en el salón, la luz, la iglesia y el horario de tu evento, y lo ajustamos juntas hasta que lo sientas tuyo.</p></div></li>
-        <li><div class="caja-p"><h3>Elegimos la tela juntas.</h3><p>Si querés, te acompaño a comprarla. Raso, satén, tul o encaje: te explico cómo cae y cómo se mueve cada una. Por dentro uso forrerías nobles que cuidan tu piel de roces y bordados.</p></div></li>
-        <li><div class="caja-p"><h3>Hago la moldería a tu medida.</h3><p>Tomo tus medidas y armo los patrones para tu cuerpo. Antes de cortar la tela hago una primera prueba en lienzo, para asegurarme de que el calce sea perfecto.</p></div></li>
-        <li><div class="caja-p"><h3>Coso y pruebo las veces que haga falta.</h3><p>Cada costura la hago yo, en mi atelier. Probamos hasta que el vestido caiga como lo imaginamos, y con los retazos del corte hago flores y detalles que lo vuelven único.</p></div></li>
-        <li><div class="caja-p"><h3>Te lo entrego en su funda.</h3><p>Se va en su funda de lienzo con tu nombre en la ventana, guardada en su bolso de pana, con una tarjeta que explica cómo lavarlo y guardarlo para que pase de generación en generación.</p></div></li>
+        <li><div class="caja-p" data-n="01 / 06"><h3>Nos conocemos.</h3><p>La primera entrevista no tiene costo y dura entre una hora y una hora y media, en general los sábados. Me contás para qué momento es tu vestido, me mostrás tus fotos de Pinterest y hablamos de lo que te gusta, de lo que no y de cómo te querés sentir ese día.</p></div></li>
+        <li><div class="caja-p" data-n="02 / 06"><h3>Dibujo tu vestido a mano.</h3><p>Lo boceto ahí mismo, mientras charlamos. Pienso en tu cuerpo, en el salón, la luz, la iglesia y el horario de tu evento, y lo ajustamos juntas hasta que lo sientas tuyo.</p></div></li>
+        <li><div class="caja-p" data-n="03 / 06"><h3>Elegimos la tela juntas.</h3><p>Si querés, te acompaño a comprarla. Raso, satén, tul o encaje: te explico cómo cae y cómo se mueve cada una. Por dentro uso forrerías nobles que cuidan tu piel de roces y bordados.</p></div></li>
+        <li><div class="caja-p" data-n="04 / 06"><h3>Hago la moldería a tu medida.</h3><p>Tomo tus medidas y armo los patrones para tu cuerpo. Antes de cortar la tela hago una primera prueba en lienzo, para asegurarme de que el calce sea perfecto.</p></div></li>
+        <li><div class="caja-p" data-n="05 / 06"><h3>Coso y pruebo las veces que haga falta.</h3><p>Cada costura la hago yo, en mi atelier. Probamos hasta que el vestido caiga como lo imaginamos, y con los retazos del corte hago flores y detalles que lo vuelven único.</p></div></li>
+        <li><div class="caja-p" data-n="06 / 06"><h3>Te lo entrego en su funda.</h3><p>Se va en su funda de lienzo con tu nombre en la ventana, guardada en su bolso de pana, con una tarjeta que explica cómo lavarlo y guardarlo para que pase de generación en generación.</p></div></li>
       </ol>
     </div>
   </section>
@@ -1165,7 +1173,7 @@ const E3 = {ok:false};
   esc.add(new T.HemisphereLight(0xfff1e0, 0x8f7f70, .45));
   const key = new T.DirectionalLight(0xffffff, 1.15); key.position.set(1300, 2300, 1700); esc.add(key); esc.add(key.target);
   const SOMBRAS = innerWidth > 960;
-  if(SOMBRAS){ ren.shadowMap.enabled = true; ren.shadowMap.type = T.PCFSoftShadowMap; key.castShadow = true; key.shadow.mapSize.set(2048, 2048);
+  if(SOMBRAS){ ren.shadowMap.enabled = true; ren.shadowMap.type = T.PCFSoftShadowMap; key.castShadow = true; key.shadow.mapSize.set(1024, 1024);
     Object.assign(key.shadow.camera, {left:-1500, right:1500, top:1500, bottom:-1500, near:100, far:9000}); key.shadow.bias = -.0004; key.shadow.normalBias = 2.5; key.shadow.radius = 4; }
   const rim = new T.DirectionalLight(0xffe6cc, .8); rim.position.set(-160, 160, -180); esc.add(rim);
   const fill = new T.DirectionalLight(0xdfe7ea, .3); fill.position.set(-180, 60, 140); esc.add(fill);
@@ -1478,7 +1486,7 @@ const E3 = {ok:false};
   }
 
   /* ---------- vestidos (modelos generados con detalle de taller) ---------- */
-  const NX = innerWidth <= 960 ? 88 : 128, NY = innerWidth <= 960 ? 60 : 84;
+  const NX = innerWidth <= 960 ? 64 : 96, NY = innerWidth <= 960 ? 40 : 60;
   /* texturas de tela */
   const texTela = (w, h, dib, rep) => { const c = document.createElement("canvas"); c.width = w; c.height = h; dib(c.getContext("2d"), w, h); const t = new T.CanvasTexture(c); t.wrapS = t.wrapT = T.RepeatWrapping; if(rep) t.repeat.set(rep[0], rep[1]); t.anisotropy = 8; return t; };
   const SATEN = texTela(512, 512, (x,w,h) => { const im = x.createImageData(w,h), d = im.data; for(let j = 0; j < h; j++) for(let i = 0; i < w; i++){ const k = (j*w+i)*4; const v = 128 + ((i + (j>>1)) % 4 < 2 ? 7 : -7) + (Math.random()-.5)*10 + Math.sin(j*.05 + Math.sin(i*.013)*3)*9; d[k] = d[k+1] = d[k+2] = v; d[k+3] = 255; } x.putImageData(im,0,0); });
@@ -1512,7 +1520,7 @@ const E3 = {ok:false};
   }
   /* godets: pliegues con cresta redonda y valle marcado, como la tela que cae por su peso */
   const godet = (x) => { const s = Math.sin(x); return s > 0 ? Math.pow(s, .7) : -Math.pow(-s, 1.6)*.85; };
-  const DIN = {tw:0, fl:0};
+  const DIN = {tw:0, fl:0}; const MOVIL3D = innerWidth <= 960;
   function mover(m, tt, amp){
     const {perfil, opt} = m.userData, p = m.geometry.attributes.position.array;
     for(let j = 0; j <= NY; j++){
@@ -1579,7 +1587,7 @@ const E3 = {ok:false};
       const pc = perfilCorset(128, 99, 14, 11);
       g.add(corset(128, 99, 14, 11, M.corset(c), true)); g.add(pedreria(pc, 260, true, .28));
       const falda = (ex, o, f, m, uv) => pieza(t => ({y: lerp2(99, 0, t), r: 11 + (50 + ex) * Math.pow(Math.sin(Math.min(1, t*1.15) * Math.PI/2), 1.25), e:.86}), {pliegues:f, np:12, fase:o, ruedo:true, libre:1.7, frunce:.05, uvx:uv, uvy:uv}, m);
-      g.add(falda(0, 0, .12, M.saten(c))); g.add(falda(2.5, 1.7, .16, M.tul(0xFBF7EF, .55), 1)); g.add(falda(5, 3.1, .19, M.tul(0xFFFFFF, .45), 1)); g.add(falda(7.5, 4.4, .22, M.tul(0xFFFDF8, .35), 1));
+      g.add(falda(0, 0, .12, M.saten(c))); g.add(falda(2.5, 1.7, .16, M.tul(0xFBF7EF, .55), 1)); if(!MOVIL3D){ g.add(falda(5, 3.1, .19, M.tul(0xFFFFFF, .45), 1)); g.add(falda(7.5, 4.4, .22, M.tul(0xFFFDF8, .35), 1)); }
       g.add(cintas(128, c)); g.add(cinto(0xEFE5D3)); g.add(mono(0xEFE5D3, 98.6));
       const fl = flor(0xF6EFE3); fl.position.set(-7.5, 100.5, 9.4); fl.rotation.y = -.5; g.add(fl); return g; },
     ofelia(){ const g = new T.Group(), c = 0xF1EADF, m = M.saten(c);
@@ -1618,10 +1626,14 @@ const E3 = {ok:false};
   function opac(o, a){ o.visible = a > .01; if(!o.visible) return; mats(o).forEach(m => { const [tr, op] = m.userData.o0, t = tr || a < .995; if(m.transparent !== t){ m.transparent = t; m.needsUpdate = true; } m.opacity = op * a; m.depthWrite = !tr && a > .6; }); }
   const v3 = new T.Vector3();
   function proyectar(x, y, z){ v3.set(x, y, z); mundo.localToWorld(v3); v3.project(cam); return [(v3.x+1)/2*innerWidth, (1-v3.y)/2*innerHeight]; }
-  let tam = [0,0];
+  let tam = [0,0]; const DPR_MAX = innerWidth <= 960 ? 1.5 : 1.5; let vacio = false;
   function render(c, t){
+    if(c.bo + c.ko + c.to + c.fo + c.vo < .02){ if(!vacio){ ren.clear(); vacio = true; } return; } vacio = false;
     const vw = innerWidth, vh = innerHeight;
-    if(tam[0] !== vw || tam[1] !== vh){ tam = [vw, vh]; ren.setPixelRatio(Math.min(1.75, devicePixelRatio || 1)); ren.setSize(vw, vh, false); cam.aspect = vw/vh; cam.fov = 2*Math.atan((vh/2)/1900)*180/Math.PI; cam.position.set(0,0,1900); cam.lookAt(0,0,0); cam.updateProjectionMatrix(); }
+    /* calidad adaptable: si los cuadros tardan, baja la densidad de píxeles; si sobra, la sube un poco */
+    const dtc = t - (render.tc || t); render.tc = t; if(dtc > 0 && dtc < 200){ render.med = (render.med || 16) * .95 + dtc * .05; render.n = (render.n || 0) + 1; }
+    if(render.n > 40){ render.n = 0; const pr = ren.getPixelRatio(); if(render.med > 24 && pr > 1){ ren.setPixelRatio(Math.max(1, pr - .25)); ren.setSize(vw, vh, false); } else if(render.med < 15 && pr < DPR_MAX){ ren.setPixelRatio(Math.min(DPR_MAX, pr + .25)); ren.setSize(vw, vh, false); } }
+    if(tam[0] !== vw || tam[1] !== vh){ tam = [vw, vh]; ren.setPixelRatio(Math.min(DPR_MAX, devicePixelRatio || 1)); ren.setSize(vw, vh, false); cam.aspect = vw/vh; cam.fov = 2*Math.atan((vh/2)/1900)*180/Math.PI; cam.position.set(0,0,1900); cam.lookAt(0,0,0); cam.updateProjectionMatrix(); }
     mundo.position.set(c.cx - vw/2, vh/2 - c.cy, 0);
     const k = c.s * U; mundo.scale.set(k, k, k);
     mundo.rotation.set(-c.rx*Math.PI/180, c.ry*Math.PI/180, 0);
@@ -1648,7 +1660,7 @@ const E3 = {ok:false};
       if(k >= 1 && Math.abs(d) < W){ a = ORDEN_V[(k-1) % ORDEN_V.length]; b = ORDEN_V[k % ORDEN_V.length]; tb = (d + W)/(2*W); tb = tb*tb*(3 - 2*tb); }
       if(b === a) b = null;
       usarV(a, b); giroV.rotation.y = c.ang*Math.PI/180;
-      const amp = reducido ? 0 : .55 + .45*fl, tt = t/1000; giroV.traverse(o => { if(o.isMesh && o.userData.perfil) mover(o, tt, amp); });
+      const amp = reducido ? 0 : .55 + .45*fl, tt = t/1000; if(!(MOVIL3D && (render.k = (render.k || 0) + 1) % 2)) giroV.traverse(o => { if(o.isMesh && o.userData.perfil) mover(o, tt, amp); });
       opac(perchaV, c.vo); opac(modelo(a), c.vo*(b ? 1 - tb : 1)); if(b) opac(modelo(b), c.vo*tb);
       /* el que entra crece apenas desde la cintura, el que sale se encoge */
       modelo(a).scale.set(1, 1, 1); if(b){ const e = .9 + .1*tb; modelo(b).scale.set(e, 1, e); modelo(a).scale.set(1 - .08*tb, 1, 1 - .08*tb); }
@@ -1684,35 +1696,35 @@ function pose(){
   const env = $("#envases").getBoundingClientRect(), proc = $("#proceso").getBoundingClientRect(), fin = $("#final").getBoundingClientRect();
   const pe = clamp(-env.top / (env.height - vh)), pf = clamp(-fin.top / (fin.height - vh));
   /* encuadres */
-  const sGen = Math.min((m ? .86 : .66)*vw / (L.ancho*U), (vh*0.32)/(60*U));
-  const general = {...BASE, ...L, cx: m ? vw/2 : vw*0.56, cy: m ? vh*0.62 : vh*0.7, s: sGen, rx:-15, ry: m ? 12 : 18, bo:1, ko:1, to:1};
+  const sGen = Math.min((m ? .94 : .66)*vw / (L.ancho*U), (vh*(m ? .34 : .32))/(60*U));
+  const general = {...BASE, ...L, cx: m ? vw/2 : vw*0.56, cy: m ? vh*0.7 : vh*0.7, s: sGen, rx:-15, ry: m ? 12 : 18, bo:1, ko:1, to:1};
   const sB = Math.min((m ? .62 : .4)*vw / (80*U), (vh*0.42)/(60*U));
-  const bolsoCerca = {...general, cx: m ? vw/2 : vw*0.57, cy: m ? vh*0.74 : vh*0.74, s: sB, rx:-22, ry:28, kx:L.kx+90, tx:L.tx-90, ko:0, to:0};
-  const sF = m ? Math.min(1, (vh*0.56)/(178*U)) : 0.98;
+  const bolsoCerca = {...general, cx: m ? vw/2 : vw*0.57, cy: m ? vh*0.76 : vh*0.74, s: sB, rx:-22, ry:28, kx:L.kx+90, tx:L.tx-90, ko:0, to:0};
+  const sF = m ? Math.min(1, (vh*0.6)/(178*U)) : 0.98;
   const sA = Math.min(sB, (vh*(m ? .56 : .72))/(232*U));
   const enBolso = {pl:1, fy:H_EN, fs:.48};
   const fundaArriba = {...bolsoCerca, lid:1, fs:1, fy:-54, fo:1, pl:0, s: sA, cy: vh*(m ? .66 : .5) + 143*U*sA, rx:-10, ry:14};
-  const fundaFrente = {...fundaArriba, bo:0, by:30, fy:0, s:sF, cy: (m ? vh*0.66 : vh*0.5) + 89*U*sF + (m ? 0 : 10), rx:0, ry:0, vo:0};
+  const fundaFrente = {...fundaArriba, bo:0, by:30, fy:0, s:sF, cy: (m ? vh*0.56 : vh*0.5) + 89*U*sF + (m ? 0 : 10), rx:0, ry:0, vo:0};
   const dentro = {...fundaFrente, vo:1, vs:1};
   const abriendo = {...dentro, door:1};
   const abierta = {...abriendo, fy:120, fo:0, sal:1, vz:10, flota:.35};
-  const sV = m ? (vh*0.5)/(156*U) : ((vh-hd)*0.95)/(156*U);
+  const sV = m ? (vh*0.44)/(156*U) : ((vh-hd)*0.95)/(156*U);
   const dDer = {...abierta, fo:0, door:1, fz:-60, cx: m ? vw*.5 : vw*0.7, cy: hd + (vh-hd)/2 + 86*U*sV, s: sV, vz:0, flota:1};
-  if(m) dDer.cy = hd + 16 + 170*U*sV;
+  if(m) dDer.cy = hd + 8 + 172*U*sV;
   /* secuencia */
   let p;
   const antes = clamp((vh - env.top) / vh);
   if(fin.top < vh){
     const desde = movil() ? {...dDer} : dDer;
-    const finDer = m ? {...dDer, cx: vw*.56, cy: vh - 30, s: Math.min(sV, (vh*0.5)/(156*U))} : {...dDer, cx: vw*0.72, cy: dDer.cy + vh*0.06};
+    const finDer = m ? {...dDer, cx: vw*.5, cy: vh - 24, s: Math.min(sV, (vh*0.5)/(156*U))} : {...dDer, cx: vw*0.72, cy: dDer.cy + vh*0.06};
     const sFv = Math.min(finDer.s, m ? (vh*0.56)/(178*U) : (vh*0.76)/(178*U));
-    const fundaVuelve = {...abierta, cx: finDer.cx, cy: (m ? vh*0.62 : hd + (vh-hd)/2) + 89*U*sFv, s: sFv, fz:0, fo:1, fy:0, door:1, vz:10, sal:1, flota:.2};
+    const fundaVuelve = {...abierta, cx: finDer.cx, cy: (m ? vh*0.66 : hd + (vh-hd)/2) + 89*U*sFv, s: sFv, fz:0, fo:1, fy:0, door:1, vz:10, sal:1, flota:.2};
     const fundaBaja = {...fundaVuelve, fy:120, fo:0};
     const cerrada = {...fundaVuelve, door:0, vz:0, vs:.9, sal:0, flota:0};
-    const sFin = Math.min((m ? .9 : .8)*vw / (L.ancho*U), (vh*(m ? .3 : .4))/(60*U));
-    const genF = {...general, cx: vw/2, cy: m ? vh*0.56 : vh*0.7, s: sFin};
+    const sFin = Math.min((m ? .98 : .8)*vw / (L.ancho*U), (vh*(m ? .36 : .4))/(60*U));
+    const genF = {...general, cx: vw/2, cy: m ? vh*0.62 : vh*0.7, s: sFin};
     const sobreBolso = {...fundaArriba, cx: m ? vw/2 : vw*0.62, cy: genF.cy - 20, s: Math.min(sB*0.8, (vh*0.6)/(232*U)), fo:1, vo:0, door:0, bo:1, by:0, lid:1};
-    sobreBolso.cy = (m ? vh*0.6 : vh*0.52) + 143*U*sobreBolso.s;
+    sobreBolso.cy = (m ? vh*0.66 : vh*0.52) + 143*U*sobreBolso.s;
     const medio = {...sobreBolso, pl:.4, fs:.8, fy:H_ARR - 8};
     const doblada = {...sobreBolso, pl:1, fs:.56, fy:H_ARR};
     const adentro = {...sobreBolso, pl:1, fs:.48, fy:H_EN};
@@ -1821,7 +1833,7 @@ function arrancar(){ if(!anima){ anima = true; requestAnimationFrame(bucle); } }
   [[0,40,20,2.2],[-30,14,-10,1.2],[28,10,24,.9]].forEach(([x,y,z,k]) => { const l = new T.Mesh(new T.PlaneGeometry(26,18), new T.MeshBasicMaterial({color:new T.Color(k,k*.97,k*.9), side:T.DoubleSide})); l.position.set(x,y,z); l.lookAt(0,0,0); envS.add(l); });
   esc3.environment = pm.fromScene(envS, .04).texture;
   esc3.add(new T.HemisphereLight(0xfff3e6, 0x9a8676, .3));
-  const sol = new T.DirectionalLight(0xfff4e8, 1.25); sol.position.set(12, 26, 14); sol.castShadow = true; sol.shadow.mapSize.set(2048, 2048); sol.shadow.radius = 6; sol.shadow.bias = -.0004;
+  const sol = new T.DirectionalLight(0xfff4e8, 1.25); sol.position.set(12, 26, 14); sol.castShadow = true; sol.shadow.mapSize.set(innerWidth <= 960 ? 1024 : 2048, innerWidth <= 960 ? 1024 : 2048); sol.shadow.radius = 6; sol.shadow.bias = -.0004;
   Object.assign(sol.shadow.camera, {left:-18, right:18, top:18, bottom:-18, near:1, far:80}); esc3.add(sol);
   const contra = new T.DirectionalLight(0xffe2c8, .55); contra.position.set(-16, 12, -14); esc3.add(contra);
   const piso = new T.Mesh(new T.PlaneGeometry(120, 120), new T.ShadowMaterial({opacity:.18})); piso.rotation.x = -Math.PI/2; piso.receiveShadow = true; esc3.add(piso);
@@ -1906,7 +1918,7 @@ function arrancar(){ if(!anima){ anima = true; requestAnimationFrame(bucle); } }
   cont.addEventListener("pointerup", soltar); cont.addEventListener("pointercancel", () => { arrastra = false; cont.classList.remove("arrastra"); });
   cont.addEventListener("pointerleave", () => { if(!arrastra){ PINES.forEach(p => p.hover = 0); tip.hidden = true; cont.classList.remove("sobre"); } });
   pin3d = (i, girar) => { PINES.forEach((p,k) => p.meta = k === i ? 1 : 0); if(girar){ let o = PINES[i].th; while(o - rotY > Math.PI) o -= Math.PI*2; while(o - rotY < -Math.PI) o += Math.PI*2; objetivo = o; } };
-  function tam(){ const w = cont.clientWidth, h = cont.clientHeight; if(!w || !h) return false; if(cv.width !== Math.round(w*Math.min(2, devicePixelRatio||1))){ ren.setPixelRatio(Math.min(2, devicePixelRatio || 1)); ren.setSize(w, h, false); cam.aspect = w/h; cam.updateProjectionMatrix(); } return true; }
+  function tam(){ const w = cont.clientWidth, h = cont.clientHeight; if(!w || !h) return false; if(cv.width !== Math.round(w*Math.min(1.5, devicePixelRatio||1))){ ren.setPixelRatio(Math.min(1.5, devicePixelRatio || 1)); ren.setSize(w, h, false); cam.aspect = w/h; cam.updateProjectionMatrix(); } return true; }
   function cuadro(t){
     enVista = !$("#v-preguntas").hidden;
     if(enVista && tam()){

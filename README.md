@@ -16,19 +16,20 @@ Es una sola página HTML que se publica tal cual en Vercel: no necesita instalar
 
 ```
 index.html          la página lista para publicar (se genera, no se edita a mano)
+img/, js/           imágenes y librerías que usa la página (se generan)
 src/index.src.html  código fuente: HTML, CSS y JavaScript (incluye la escena 3D)
 src/escena3d.js     copia de la escena 3D (three.js) para leerla aparte
 src/fotos.json      imágenes que se incrustan en la página
 src/three.min.js    three.js r149
 src/lenis.min.js    scroll suave
-src/build.py        arma index.html a partir de lo anterior
+src/build_web.py    arma index.html, img/ y js/ a partir de lo anterior
 assets/             fotos de archivo, generadas, marca y packaging
 ```
 
 ## Editar y publicar
 
 1. Editá `src/index.src.html`.
-2. Generá la página: `python3 src/build.py`.
+2. Generá la página: `python3 src/build_web.py .`
 3. Hacé commit y push: Vercel publica solo.
 
 ## Tipografías

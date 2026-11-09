@@ -23,7 +23,7 @@ const E3 = {ok:false};
   esc.add(new T.HemisphereLight(0xfff1e0, 0x8f7f70, .45));
   const key = new T.DirectionalLight(0xffffff, 1.15); key.position.set(1300, 2300, 1700); esc.add(key); esc.add(key.target);
   const SOMBRAS = innerWidth > 960;
-  if(SOMBRAS){ ren.shadowMap.enabled = true; ren.shadowMap.type = T.PCFSoftShadowMap; key.castShadow = true; key.shadow.mapSize.set(2048, 2048);
+  if(SOMBRAS){ ren.shadowMap.enabled = true; ren.shadowMap.type = T.PCFSoftShadowMap; key.castShadow = true; key.shadow.mapSize.set(1024, 1024);
     Object.assign(key.shadow.camera, {left:-1500, right:1500, top:1500, bottom:-1500, near:100, far:9000}); key.shadow.bias = -.0004; key.shadow.normalBias = 2.5; key.shadow.radius = 4; }
   const rim = new T.DirectionalLight(0xffe6cc, .8); rim.position.set(-160, 160, -180); esc.add(rim);
   const fill = new T.DirectionalLight(0xdfe7ea, .3); fill.position.set(-180, 60, 140); esc.add(fill);
@@ -336,7 +336,7 @@ const E3 = {ok:false};
   }
 
   /* ---------- vestidos (modelos generados con detalle de taller) ---------- */
-  const NX = innerWidth <= 960 ? 88 : 128, NY = innerWidth <= 960 ? 60 : 84;
+  const NX = innerWidth <= 960 ? 64 : 96, NY = innerWidth <= 960 ? 40 : 60;
   /* texturas de tela */
   const texTela = (w, h, dib, rep) => { const c = document.createElement("canvas"); c.width = w; c.height = h; dib(c.getContext("2d"), w, h); const t = new T.CanvasTexture(c); t.wrapS = t.wrapT = T.RepeatWrapping; if(rep) t.repeat.set(rep[0], rep[1]); t.anisotropy = 8; return t; };
   const SATEN = texTela(512, 512, (x,w,h) => { const im = x.createImageData(w,h), d = im.data; for(let j = 0; j < h; j++) for(let i = 0; i < w; i++){ const k = (j*w+i)*4; const v = 128 + ((i + (j>>1)) % 4 < 2 ? 7 : -7) + (Math.random()-.5)*10 + Math.sin(j*.05 + Math.sin(i*.013)*3)*9; d[k] = d[k+1] = d[k+2] = v; d[k+3] = 255; } x.putImageData(im,0,0); });
@@ -370,7 +370,7 @@ const E3 = {ok:false};
   }
   /* godets: pliegues con cresta redonda y valle marcado, como la tela que cae por su peso */
   const godet = (x) => { const s = Math.sin(x); return s > 0 ? Math.pow(s, .7) : -Math.pow(-s, 1.6)*.85; };
-  const DIN = {tw:0, fl:0};
+  const DIN = {tw:0, fl:0}; const MOVIL3D = innerWidth <= 960;
   function mover(m, tt, amp){
     const {perfil, opt} = m.userData, p = m.geometry.attributes.position.array;
     for(let j = 0; j <= NY; j++){
@@ -437,7 +437,7 @@ const E3 = {ok:false};
       const pc = perfilCorset(128, 99, 14, 11);
       g.add(corset(128, 99, 14, 11, M.corset(c), true)); g.add(pedreria(pc, 260, true, .28));
       const falda = (ex, o, f, m, uv) => pieza(t => ({y: lerp2(99, 0, t), r: 11 + (50 + ex) * Math.pow(Math.sin(Math.min(1, t*1.15) * Math.PI/2), 1.25), e:.86}), {pliegues:f, np:12, fase:o, ruedo:true, libre:1.7, frunce:.05, uvx:uv, uvy:uv}, m);
-      g.add(falda(0, 0, .12, M.saten(c))); g.add(falda(2.5, 1.7, .16, M.tul(0xFBF7EF, .55), 1)); g.add(falda(5, 3.1, .19, M.tul(0xFFFFFF, .45), 1)); g.add(falda(7.5, 4.4, .22, M.tul(0xFFFDF8, .35), 1));
+      g.add(falda(0, 0, .12, M.saten(c))); g.add(falda(2.5, 1.7, .16, M.tul(0xFBF7EF, .55), 1)); if(!MOVIL3D){ g.add(falda(5, 3.1, .19, M.tul(0xFFFFFF, .45), 1)); g.add(falda(7.5, 4.4, .22, M.tul(0xFFFDF8, .35), 1)); }
       g.add(cintas(128, c)); g.add(cinto(0xEFE5D3)); g.add(mono(0xEFE5D3, 98.6));
       const fl = flor(0xF6EFE3); fl.position.set(-7.5, 100.5, 9.4); fl.rotation.y = -.5; g.add(fl); return g; },
     ofelia(){ const g = new T.Group(), c = 0xF1EADF, m = M.saten(c);
@@ -476,10 +476,14 @@ const E3 = {ok:false};
   function opac(o, a){ o.visible = a > .01; if(!o.visible) return; mats(o).forEach(m => { const [tr, op] = m.userData.o0, t = tr || a < .995; if(m.transparent !== t){ m.transparent = t; m.needsUpdate = true; } m.opacity = op * a; m.depthWrite = !tr && a > .6; }); }
   const v3 = new T.Vector3();
   function proyectar(x, y, z){ v3.set(x, y, z); mundo.localToWorld(v3); v3.project(cam); return [(v3.x+1)/2*innerWidth, (1-v3.y)/2*innerHeight]; }
-  let tam = [0,0];
+  let tam = [0,0]; const DPR_MAX = innerWidth <= 960 ? 1.5 : 1.5; let vacio = false;
   function render(c, t){
+    if(c.bo + c.ko + c.to + c.fo + c.vo < .02){ if(!vacio){ ren.clear(); vacio = true; } return; } vacio = false;
     const vw = innerWidth, vh = innerHeight;
-    if(tam[0] !== vw || tam[1] !== vh){ tam = [vw, vh]; ren.setPixelRatio(Math.min(1.75, devicePixelRatio || 1)); ren.setSize(vw, vh, false); cam.aspect = vw/vh; cam.fov = 2*Math.atan((vh/2)/1900)*180/Math.PI; cam.position.set(0,0,1900); cam.lookAt(0,0,0); cam.updateProjectionMatrix(); }
+    /* calidad adaptable: si los cuadros tardan, baja la densidad de píxeles; si sobra, la sube un poco */
+    const dtc = t - (render.tc || t); render.tc = t; if(dtc > 0 && dtc < 200){ render.med = (render.med || 16) * .95 + dtc * .05; render.n = (render.n || 0) + 1; }
+    if(render.n > 40){ render.n = 0; const pr = ren.getPixelRatio(); if(render.med > 24 && pr > 1){ ren.setPixelRatio(Math.max(1, pr - .25)); ren.setSize(vw, vh, false); } else if(render.med < 15 && pr < DPR_MAX){ ren.setPixelRatio(Math.min(DPR_MAX, pr + .25)); ren.setSize(vw, vh, false); } }
+    if(tam[0] !== vw || tam[1] !== vh){ tam = [vw, vh]; ren.setPixelRatio(Math.min(DPR_MAX, devicePixelRatio || 1)); ren.setSize(vw, vh, false); cam.aspect = vw/vh; cam.fov = 2*Math.atan((vh/2)/1900)*180/Math.PI; cam.position.set(0,0,1900); cam.lookAt(0,0,0); cam.updateProjectionMatrix(); }
     mundo.position.set(c.cx - vw/2, vh/2 - c.cy, 0);
     const k = c.s * U; mundo.scale.set(k, k, k);
     mundo.rotation.set(-c.rx*Math.PI/180, c.ry*Math.PI/180, 0);
@@ -506,7 +510,7 @@ const E3 = {ok:false};
       if(k >= 1 && Math.abs(d) < W){ a = ORDEN_V[(k-1) % ORDEN_V.length]; b = ORDEN_V[k % ORDEN_V.length]; tb = (d + W)/(2*W); tb = tb*tb*(3 - 2*tb); }
       if(b === a) b = null;
       usarV(a, b); giroV.rotation.y = c.ang*Math.PI/180;
-      const amp = reducido ? 0 : .55 + .45*fl, tt = t/1000; giroV.traverse(o => { if(o.isMesh && o.userData.perfil) mover(o, tt, amp); });
+      const amp = reducido ? 0 : .55 + .45*fl, tt = t/1000; if(!(MOVIL3D && (render.k = (render.k || 0) + 1) % 2)) giroV.traverse(o => { if(o.isMesh && o.userData.perfil) mover(o, tt, amp); });
       opac(perchaV, c.vo); opac(modelo(a), c.vo*(b ? 1 - tb : 1)); if(b) opac(modelo(b), c.vo*tb);
       /* el que entra crece apenas desde la cintura, el que sale se encoge */
       modelo(a).scale.set(1, 1, 1); if(b){ const e = .9 + .1*tb; modelo(b).scale.set(e, 1, e); modelo(a).scale.set(1 - .08*tb, 1, 1 - .08*tb); }
