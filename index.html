@@ -113,7 +113,7 @@ img{max-width:100%;display:block}
 .pat-fila img{width:104px;height:auto;filter:brightness(.62) contrast(1.2)}
 @keyframes fila{from{transform:translateX(0)}to{transform:translateX(calc(var(--pat-c,360px) * -1))}}
 .landing > .portada > .logo-cuadro{position:absolute;left:50%;top:calc(var(--header) + 28svh);z-index:5;width:min(46vw,460px);aspect-ratio:2.1/1;transform:translate(-50%,-50%);background:#fff;display:flex;align-items:center;justify-content:center;padding:clamp(20px,3.2vw,40px) clamp(28px,4.5vw,56px);box-shadow:0 30px 60px -34px rgba(19,32,38,.5)}
-.logo-cuadro::before{content:"";position:absolute;inset:12px;border:1px solid rgba(19,32,38,.55);pointer-events:none}
+.logo-cuadro::before{content:"";position:absolute;inset:12px;border-top:1px solid #4a2a1a;border-bottom:1px solid #4a2a1a;pointer-events:none}
 .logo-cuadro h1{margin:0;width:100%}
 .logo-cuadro img{width:100%;height:auto}
 @media (max-width:960px){.landing > .portada{height:calc(var(--header) + 50svh);min-height:420px}.landing > .portada > .logo-cuadro{top:calc(var(--header) + 25svh);width:72vw;padding:18px 22px}.pat-fila span{font-size:13px}.pat-fila img{width:80px}}
