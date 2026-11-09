@@ -16,6 +16,8 @@ for k in usados:
             import urllib.parse; ext = EXT.get(m2.group(1), 'bin'); open(os.path.join(OUT, 'img', f'{k}.{ext}'), 'w').write(urllib.parse.unquote(m2.group(2))); rutas[k] = f'img/{k}.{ext}'
         else: rutas[k] = src
 shutil.copy(os.path.join(SRC, 'three.min.js'), os.path.join(OUT, 'js', 'three.min.js'))
+for _f in ('favicon.svg','favicon-32.png','apple-touch-icon.png'):
+    if os.path.exists(os.path.join(SRC, _f)): shutil.copy(os.path.join(SRC, _f), os.path.join(OUT, 'img', _f))
 lenis = re.sub(r'//# sourceMappingURL=.*', '', open(os.path.join(SRC, 'lenis.min.js')).read()); open(os.path.join(OUT, 'js', 'lenis.min.js'), 'w').write(lenis)
 s = s.replace('<script>/*LENIS*/</script>', '<script src="js/lenis.min.js"></script>').replace('<script>/*THREE*/</script>', '<script src="js/three.min.js"></script>')
 s = re.sub(r'\{\{F:(\w+)\}\}', lambda m: rutas[m.group(1)], s)
@@ -24,7 +26,7 @@ s = re.sub(r'\{\{H:(\w+)\}\}', lambda m: str(f[m.group(1)]['h']), s)
 head, body = s.split('<header class="cabecera"', 1)
 html = ('<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
         '<meta name="description" content="ALTIVA by Alejandra Prieto: alta costura en Córdoba. Vestidos de 15, egresadas, novias e invitadas, diseñados y cosidos a mano en el atelier.">'
-        '<meta name="theme-color" content="#FDF4E7"><link rel="icon" href="img/isologo.svg" type="image/svg+xml">'
+        '<meta name="theme-color" content="#FDF4E7"><link rel="icon" href="img/favicon.svg" type="image/svg+xml"><link rel="icon" href="img/favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="img/apple-touch-icon.png">'
         '<link rel="preload" as="image" href="img/tile_a.webp"><link rel="preload" as="script" href="js/three.min.js">'
         '<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>'
         + head + '</head><body><header class="cabecera"' + body + '</body></html>')
