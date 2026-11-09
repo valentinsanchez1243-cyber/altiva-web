@@ -103,7 +103,7 @@ img{max-width:100%;display:block}
 
 /* portada: el logo al centro y a los costados el patrón que baja sin fin */
 .landing > .portada{position:relative;height:calc(var(--header) + 56svh);min-height:520px;background:var(--crema)}
-.landing > .portada > .banda{position:absolute;left:0;right:0;bottom:0;top:var(--header);overflow:hidden;background:var(--crema-2);z-index:1}
+.landing > .portada > .banda{position:absolute;left:0;right:0;bottom:0;top:var(--header);overflow:hidden;background:var(--crema-2);z-index:1;border-top:1.5px solid #4a2a1a;border-bottom:1.5px solid #4a2a1a}
 .pat{position:absolute;left:50%;top:50%;width:var(--pat-l,1600px);height:var(--pat-l,1600px);margin:calc(var(--pat-l,1600px) / -2) 0 0 calc(var(--pat-l,1600px) / -2);transform:rotate(45deg)}
 .pat-mov{position:absolute;inset:calc(var(--pat-c,360px) * -1) 0 0 calc(var(--pat-c,360px) * -1)}
 .pat-fila{display:flex;align-items:center;height:var(--pat-r,90px);white-space:nowrap;animation:fila 18s linear infinite;will-change:transform}
@@ -116,7 +116,7 @@ img{max-width:100%;display:block}
 .logo-cuadro::before{content:"";position:absolute;inset:12px;border:1px solid rgba(19,32,38,.55);pointer-events:none}
 .logo-cuadro h1{margin:0;width:100%}
 .logo-cuadro img{width:100%;height:auto}
-@media (max-width:960px){.landing > .portada{height:calc(var(--header) + 50svh);min-height:420px}.landing > .portada > .logo-cuadro{top:calc(var(--header) + 25svh);width:72vw;padding:18px 22px}.pat-fila span{font-size:13px}.pat-fila img{width:80px}}
+@media (max-width:960px){.landing > .portada{height:calc(var(--header) + 50svh);min-height:420px}.landing > .portada > .banda{top:calc(var(--header) + 16px)}.landing > .portada > .logo-cuadro{top:calc(var(--header) + 25svh);width:72vw;padding:18px 22px}.pat-fila span{font-size:13px}.pat-fila img{width:80px}}
 @keyframes bajar{0%{transform:translateX(-50%) scaleY(0);transform-origin:top}50%{transform:translateX(-50%) scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:translateX(-50%) scaleY(0);transform-origin:bottom}}
 
 /* presentación */
