@@ -86,7 +86,7 @@ img{max-width:100%;display:block}
 .cuenta-n[data-n="0"]{display:none}
 .barra .btn{min-height:44px;padding:0 20px}
 .solo-m{display:none}
-@media (max-width:960px){.links,.barra .btn,.nav-res{display:none}.solo-m{display:inline-flex}.barra{height:60px}:root{--header:96px}}
+@media (max-width:960px){.links,.barra .btn,.nav-res{display:none}.solo-m{display:inline-flex}.barra{height:60px;grid-template-columns:1fr auto}:root{--header:96px}}
 @media (min-width:961px){:root{--header:120px}}
 .menu-m{position:fixed;inset:0;z-index:70;background:var(--noche);color:var(--crema);display:flex;flex-direction:column;padding-top:calc(env(safe-area-inset-top,0px) + 16px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 24px)}
 .menu-m .ico{align-self:flex-end}
@@ -116,7 +116,7 @@ img{max-width:100%;display:block}
 .logo-cuadro::before{content:"";position:absolute;inset:12px;border:1px solid rgba(19,32,38,.55);pointer-events:none}
 .logo-cuadro h1{margin:0;width:100%}
 .logo-cuadro img{width:100%;height:auto}
-@media (max-width:960px){.landing > .portada{height:calc(var(--header) + 50svh);min-height:420px}.landing > .portada > .banda{top:calc(var(--header) + 16px)}.landing > .portada > .logo-cuadro{top:calc(var(--header) + 25svh);width:72vw;padding:18px 22px}.pat-fila span{font-size:13px}.pat-fila img{width:80px}}
+@media (max-width:960px){.landing > .portada{height:calc(var(--header) + 50svh);min-height:420px}.landing > .portada > .logo-cuadro{top:calc(var(--header) + 25svh);width:72vw;padding:18px 22px}.pat-fila span{font-size:13px}.pat-fila img{width:80px}}
 @keyframes bajar{0%{transform:translateX(-50%) scaleY(0);transform-origin:top}50%{transform:translateX(-50%) scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:translateX(-50%) scaleY(0);transform-origin:bottom}}
 
 /* presentación */
@@ -164,13 +164,20 @@ img{max-width:100%;display:block}
 .pasos-f li:last-child{min-height:90vh}
 
 @media (max-width:960px){
-  .pasos-f li{max-width:none;min-height:0;opacity:1;position:sticky;top:calc(var(--header) + 52svh);margin-bottom:62svh;display:block}
+  .pasos-f li{max-width:none;min-height:0;opacity:1;position:sticky;top:calc(100svh - min(40svh,320px) - 14px - env(safe-area-inset-bottom,0px));margin-bottom:62svh;display:block}
   .pasos-f li:last-child{min-height:0;margin-bottom:24svh}
   .pasos-f li .caja-p{background:#fffaf2;padding:22px 20px 24px;margin-inline:-4px;box-shadow:0 -18px 40px -24px rgba(19,32,38,.35),0 1px 0 rgba(19,32,38,.06);min-height:min(40svh,320px);display:flex;flex-direction:column;gap:10px;position:relative}
   .pasos-f li .caja-p::before{content:attr(data-n);font-family:var(--display);font-size:14px;letter-spacing:.14em;color:var(--muted)}
   .pasos-f h3{font-size:clamp(1.6rem,7.4vw,2.2rem)}
   .pasos-f p{font-size:15px;line-height:1.6}
-  .proc-cab{background:#fffaf2;padding:22px 20px;margin-inline:-4px;position:relative;margin-bottom:46svh}
+  .proc-cab{background:#fffaf2;padding:22px 20px;margin-inline:-4px;position:sticky;z-index:0;top:calc(100svh - min(40svh,320px) - 14px - env(safe-area-inset-bottom,0px));min-height:min(40svh,320px);display:flex;flex-direction:column;justify-content:center;gap:12px;margin-bottom:62svh;box-shadow:0 -18px 40px -24px rgba(19,32,38,.35)}
+  .proc-cab .rev{opacity:1;transform:none}
+  .pasos-f li{z-index:1}
+  .env-etq,.fin-etq,.env-nota{display:none !important}
+  .aviso button{margin-block:-8px}
+  @media (max-width:370px){.aviso{font-size:12px;gap:10px;letter-spacing:0}}
+  .esc-carta{display:none}
+  .esc-papel-tit{padding-right:0}
 }
 
 /* final */
@@ -1708,9 +1715,9 @@ function pose(){
   const dentro = {...fundaFrente, vo:1, vs:1};
   const abriendo = {...dentro, door:1};
   const abierta = {...abriendo, fy:120, fo:0, sal:1, vz:10, flota:.35};
-  const sV = m ? (vh*0.44)/(156*U) : ((vh-hd)*0.95)/(156*U);
+  const sV = m ? Math.min((vh*0.44)/(156*U), (vw*0.92)/(118*U)) : ((vh-hd)*0.95)/(156*U);
   const dDer = {...abierta, fo:0, door:1, fz:-60, cx: m ? vw*.5 : vw*0.7, cy: hd + (vh-hd)/2 + 86*U*sV, s: sV, vz:0, flota:1};
-  if(m) dDer.cy = hd + 8 + 172*U*sV;
+  if(m){ dDer.cy = hd + 8 + 172*U*sV; abierta.s = sV; abierta.cy = dDer.cy; }
   /* secuencia */
   let p;
   const antes = clamp((vh - env.top) / vh);
@@ -1721,7 +1728,7 @@ function pose(){
     const fundaVuelve = {...abierta, cx: finDer.cx, cy: (m ? vh*0.66 : hd + (vh-hd)/2) + 89*U*sFv, s: sFv, fz:0, fo:1, fy:0, door:1, vz:10, sal:1, flota:.2};
     const fundaBaja = {...fundaVuelve, fy:120, fo:0};
     const cerrada = {...fundaVuelve, door:0, vz:0, vs:.9, sal:0, flota:0};
-    const sFin = Math.min((m ? .98 : .8)*vw / (L.ancho*U), (vh*(m ? .36 : .4))/(60*U));
+    const sFin = Math.min((m ? .84 : .8)*vw / (L.ancho*U), (vh*(m ? .36 : .4))/(60*U));
     const genF = {...general, cx: vw/2, cy: m ? vh*0.62 : vh*0.7, s: sFin};
     const sobreBolso = {...fundaArriba, cx: m ? vw/2 : vw*0.62, cy: genF.cy - 20, s: Math.min(sB*0.8, (vh*0.6)/(232*U)), fo:1, vo:0, door:0, bo:1, by:0, lid:1};
     sobreBolso.cy = (m ? vh*0.66 : vh*0.52) + 143*U*sobreBolso.s;
@@ -1733,7 +1740,7 @@ function pose(){
     const tr = [[0,desde],[.12,finDer],[.16,{...fundaBaja, cx: finDer.cx, cy: fundaVuelve.cy, s: fundaVuelve.s}],[.26,fundaVuelve],[.38,cerrada],[.5,sobreBolso],[.56,medio],[.62,doblada],[.68,adentro],[.74,tapada],[.88,final],[1,final]];
     p = tramo(tr, pf);
     p.vo = pf < .38 ? 1 : 1 - ss(.38,.42,pf);
-    $(".final-txt").style.opacity = 1 - ss(.7,.78,pf);
+    $(".final-txt").style.opacity = (m ? ss(.06,.12,pf) : 1) * (1 - ss(.7,.78,pf));
     const fe = $("#fin-etq"); fe.style.opacity = ss(.84,.92,pf);
     if(!m){ const r = genF.ry*Math.PI/180, k = U*genF.s;
       [["tubos",L.tx+8,L.tz],["bolso",0,L.bz],["book",L.kx,L.kz]].forEach(([n,x,z]) => { const li = $(`[data-k="${n}"]`, fe); if(li) li.style.left = (genF.cx + (x*Math.cos(r) + z*Math.sin(r))*k).toFixed(0) + "px"; });
