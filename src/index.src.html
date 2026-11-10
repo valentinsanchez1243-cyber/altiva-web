@@ -9,7 +9,7 @@
   --s-sub:clamp(1.5rem,1.2rem + .8vw,2rem);
   --crema:#FDF4E7;
   --tex:url({{F:tile_a}}) 0 0/480px 480px;
-  --tex2:url({{F:tile_b}}) 0 0/480px 480px;
+  --tex2:url({{F:tile_b}}) 0 0/480px 480px; --flor:url({{F:tile_c}}) 0 0/960px 960px; --flor-p:url({{F:tile_e}}) 0 0/960px 960px; --flor-c:url({{F:tile_d}}) 0 0/960px 960px;
   --crema-2:#F4E8D6;
   --pizarra:#324548;
   --noche:#132026;
@@ -45,8 +45,8 @@ img{max-width:100%;display:block}
 .g12{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap)}
 .g-crema{background:var(--tex),var(--crema);color:var(--noche);--muted:var(--pizarra)}
 .g-crema2{background:var(--tex2),var(--crema-2);color:var(--noche);--muted:var(--pizarra)}
-.g-pizarra{background:var(--pizarra);color:var(--crema);--muted:#D9DCDB}
-.g-noche{background:var(--noche);color:var(--crema);--muted:var(--niebla)}
+.g-pizarra{background:var(--flor-p),var(--pizarra);color:var(--crema);--muted:#D9DCDB}
+.g-noche{background:var(--flor),var(--noche);color:var(--crema);--muted:var(--niebla)}
 .g-niebla{background:var(--niebla);color:var(--noche);--muted:var(--noche)}
 .muted{color:var(--muted)}
 
@@ -64,7 +64,7 @@ img{max-width:100%;display:block}
 
 /* cabecera: una barra plana */
 .cabecera{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);z-index:50;color:var(--cab-ink,var(--noche));transition:color .4s}
-.aviso{min-height:36px;background:var(--noche);color:var(--crema);display:flex;align-items:center;justify-content:center;gap:16px;font-size:var(--s-small);padding:4px max(16px,env(safe-area-inset-right,0px)) 4px max(16px,env(safe-area-inset-left,0px));text-align:center}
+.aviso{min-height:36px;background:var(--flor),var(--noche);background-position:-120px -300px,0 0;color:var(--crema);display:flex;align-items:center;justify-content:center;gap:16px;font-size:var(--s-small);padding:4px max(16px,env(safe-area-inset-right,0px)) 4px max(16px,env(safe-area-inset-left,0px));text-align:center}
 .aviso button{background:none;border:0;padding:0;font-size:inherit;text-decoration:underline;text-underline-offset:4px}
 .barra{height:84px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;background:var(--tex),var(--crema);transition:background .3s}
 .barra .marca{justify-self:start}
@@ -102,7 +102,7 @@ img{max-width:100%;display:block}
 }
 @media (max-width:370px){.links button{font-size:12.5px}.links{gap:6px;padding-inline:12px;margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)))}}
 @media (min-width:961px){:root{--header:120px}}
-.menu-m{position:fixed;inset:0;z-index:70;background:var(--noche);color:var(--crema);display:flex;flex-direction:column;padding-top:calc(env(safe-area-inset-top,0px) + 16px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 24px)}
+.menu-m{position:fixed;inset:0;z-index:70;background:var(--flor),var(--noche);color:var(--crema);display:flex;flex-direction:column;padding-top:calc(env(safe-area-inset-top,0px) + 16px);padding-bottom:calc(env(safe-area-inset-bottom,0px) + 24px)}
 .menu-m .ico{align-self:flex-end}
 .menu-m nav{display:flex;flex-direction:column;margin-top:32px}
 .menu-m nav button{background:none;border:0;text-align:left;font-family:var(--display);font-size:var(--s-head);line-height:1.15;color:var(--crema);padding:2px 0}
@@ -180,13 +180,14 @@ img{max-width:100%;display:block}
 @media (max-width:960px){
   .pasos-f li{max-width:none;min-height:0;opacity:1;position:sticky;top:calc(100svh - min(40svh,320px) - 14px - env(safe-area-inset-bottom,0px));margin-bottom:62svh;display:block}
   .pasos-f li:last-child{min-height:0;margin-bottom:24svh}
-  .pasos-f li .caja-p{background:#fffaf2;padding:22px 20px 24px;margin-inline:-4px;box-shadow:0 -18px 40px -24px rgba(19,32,38,.35),0 1px 0 rgba(19,32,38,.06);min-height:min(40svh,320px);display:flex;flex-direction:column;gap:10px;position:relative}
+  .pasos-f li .caja-p{background:var(--flor-c),#fffaf2;padding:22px 20px 24px;margin-inline:-4px;box-shadow:0 -18px 40px -24px rgba(19,32,38,.35),0 1px 0 rgba(19,32,38,.06);min-height:min(40svh,320px);display:flex;flex-direction:column;gap:10px;position:relative}
   .pasos-f li .caja-p::before{content:attr(data-n);font-family:var(--display);font-size:14px;letter-spacing:.14em;color:var(--muted)}
   .pasos-f h3{font-size:clamp(1.6rem,7.4vw,2.2rem)}
   .pasos-f p{font-size:15px;line-height:1.6}
-  .proc-cab{background:#fffaf2;padding:22px 20px;margin-inline:-4px;position:sticky;z-index:0;top:calc(100svh - min(40svh,320px) - 14px - env(safe-area-inset-bottom,0px));min-height:min(40svh,320px);display:flex;flex-direction:column;justify-content:center;gap:12px;margin-bottom:62svh;box-shadow:0 -18px 40px -24px rgba(19,32,38,.35)}
+  .proc-cab{background:var(--flor-c),#fffaf2;padding:22px 20px;margin-inline:-4px;position:sticky;z-index:0;top:calc(100svh - min(40svh,320px) - 14px - env(safe-area-inset-bottom,0px));min-height:min(40svh,320px);display:flex;flex-direction:column;justify-content:center;gap:12px;margin-bottom:62svh;box-shadow:0 -18px 40px -24px rgba(19,32,38,.35)}
   .proc-cab .rev{opacity:1;transform:none}
   .pasos-f li{z-index:1}
+  .pasos-f li:nth-child(2) .caja-p{background-position:-300px -180px,0 0}.pasos-f li:nth-child(3) .caja-p{background-position:-620px -420px,0 0}.pasos-f li:nth-child(4) .caja-p{background-position:-140px -640px,0 0}.pasos-f li:nth-child(5) .caja-p{background-position:-480px -40px,0 0}.pasos-f li:nth-child(6) .caja-p{background-position:-760px -560px,0 0}.proc-cab{background-position:-400px -300px,0 0}
   .env-etq,.fin-etq,.env-nota{display:none !important}
   .aviso button{margin-block:-8px}
   @media (max-width:370px){.aviso{font-size:12px;gap:10px;letter-spacing:0}}
@@ -295,7 +296,7 @@ img{max-width:100%;display:block}
 .contacto-acc{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:8px}
 .copiar{background:none;border:0;padding:4px 0;text-decoration:underline;text-underline-offset:4px;font-size:var(--s-small)}
 @media (max-width:960px){.contacto-grid{grid-template-columns:minmax(0,1fr)}.numero{font-size:10.4vw}}
-.cuenta-intro{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:24px var(--gap);align-items:center;margin-bottom:72px;background:var(--pizarra);color:var(--crema);padding:clamp(28px,4vw,56px);--muted:#D9DCDB}
+.cuenta-intro{display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:24px var(--gap);align-items:center;margin-bottom:72px;background:var(--flor-p),var(--pizarra);color:var(--crema);padding:clamp(28px,4vw,56px);--muted:#D9DCDB}
 .cuenta-intro h1{font-size:var(--s-head);line-height:1}
 .cuenta-txt{display:flex;flex-direction:column;align-items:flex-start;gap:24px}
 .cuenta-txt p{max-width:44ch}
@@ -587,7 +588,7 @@ img{max-width:100%;display:block}
 .perfil span{font-size:var(--s-small);color:var(--pizarra)}
 @media (max-width:520px){.perfiles{grid-template-columns:minmax(0,1fr)}}
 .panel-cuenta{display:grid;grid-template-columns:7fr 5fr;gap:64px;align-items:start}
-.prox{background:var(--noche);color:var(--crema);padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:14px;margin-top:32px}
+.prox{background:var(--flor),var(--noche);background-position:-260px -140px,0 0;color:var(--crema);padding:clamp(24px,3vw,40px);display:flex;flex-direction:column;gap:14px;margin-top:32px}
 .prox strong{font-family:var(--display);font-weight:500;font-size:var(--s-head);line-height:1}
 .prox .gcal{background:var(--tex),var(--crema);align-self:flex-start}
 .prox .gcal:hover{background:var(--niebla)}
@@ -2158,7 +2159,7 @@ function reservar(){
   const c = $("#res-in");
   if(res.hecho){
     const t = res.hecho;
-    c.innerHTML = `<div class="res-grid"><div class="caja" style="background:var(--noche);color:var(--crema)"><h1 style="font-size:var(--s-head)">Te esperamos el ${fechaL(t.f)} a las ${t.h} h.</h1><p>Es tu entrevista inicial, sin costo. Te mandamos la dirección del atelier por WhatsApp.</p>
+    c.innerHTML = `<div class="res-grid"><div class="caja g-noche"><h1 style="font-size:var(--s-head)">Te esperamos el ${fechaL(t.f)} a las ${t.h} h.</h1><p>Es tu entrevista inicial, sin costo. Te mandamos la dirección del atelier por WhatsApp.</p>
       <div style="display:flex;gap:10px;flex-wrap:wrap"><a class="gcal" style="background:var(--crema)" target="_blank" rel="noopener" href="${gcal(t)}">${icoCal}Agregar a mi Google Calendar</a><button class="btn" data-ir="cuenta" style="background:var(--niebla);color:var(--noche)">Ver mi cuenta</button></div>
       <button class="enlace" id="r-o" style="align-self:flex-start;color:var(--crema)">Reservar otro turno</button></div>
       <figure style="margin:0"><img src="{{F:molde}}" alt="Moldes de papel de una prenda con líneas de costura marcadas"></figure></div>`;
