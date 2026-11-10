@@ -136,7 +136,7 @@ img{max-width:100%;display:block}
 .cifras{display:flex;flex-wrap:wrap;gap:20px 48px;margin-top:16px}
 .cifra b{display:block;font-family:var(--display);font-weight:400;font-size:var(--s-sub);line-height:1}
 .cifra span{display:block;font-size:var(--s-small);color:var(--muted);margin-top:6px;max-width:18ch}
-@media (max-width:960px){.pre-grid{grid-template-columns:minmax(0,1fr);row-gap:40px}.pre-cartas,.pre-txt{grid-column:1}.pre-cartas{width:min(100%,440px)}}
+@media (max-width:960px){.pre-grid{grid-template-columns:minmax(0,1fr);row-gap:40px}.pre-cartas,.pre-txt{grid-column:1}.presento{padding-block:72px}.pre-cartas{width:min(76%,330px);margin-inline:auto}.cifras{justify-content:center;text-align:center;gap:20px 0;margin-top:28px;padding-top:24px;border-top:1px solid rgba(19,32,38,.14)}.cifra{flex:1 1 50%}.cifra b{font-size:clamp(30px,8.5vw,40px)}.cifra span{margin-inline:auto}.acordeon summary{min-height:44px;align-items:center}a.numero{display:inline-flex;align-items:center;min-height:44px}}
 
 /* envases: escena fija en 3D, sección pineada */
 .envases{height:560vh;position:relative;background:var(--tex),var(--crema)}
@@ -1725,7 +1725,7 @@ function pose(){
   const env = $("#envases").getBoundingClientRect(), proc = $("#proceso").getBoundingClientRect(), fin = $("#final").getBoundingClientRect();
   const pe = clamp(-env.top / (env.height - vh)), pf = clamp(-fin.top / (fin.height - vh));
   /* encuadres */
-  const sGen = Math.min((m ? .94 : .66)*vw / (L.ancho*U), (vh*(m ? .34 : .32))/(60*U));
+  const sGen = Math.min((m ? .84 : .66)*vw / (L.ancho*U), (vh*(m ? .34 : .32))/(60*U));
   const general = {...BASE, ...L, cx: m ? vw/2 : vw*0.56, cy: m ? vh*0.7 : vh*0.7, s: sGen, rx:-15, ry: m ? 12 : 18, bo:1, ko:1, to:1};
   const sB = Math.min((m ? .62 : .4)*vw / (80*U), (vh*0.42)/(60*U));
   const bolsoCerca = {...general, cx: m ? vw/2 : vw*0.57, cy: m ? vh*0.76 : vh*0.74, s: sB, rx:-22, ry:28, kx:L.kx+90, tx:L.tx-90, ko:0, to:0};

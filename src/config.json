@@ -1,0 +1,53 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "index.src.html"
+        ],
+        "createdAt": "2026-10-23T16:46:26.579Z",
+        "reason": "Claude: las secciones son campos de color a todo el ancho; el margen interior lo da el contenedor .marco-pag, el texto no toca bordes (verificado en capturas)"
+      },
+      {
+        "rule": "italic-serif-display",
+        "value": "*",
+        "files": [
+          "index.src.html"
+        ],
+        "createdAt": "2026-10-23T16:46:26.588Z",
+        "reason": "Claude: el h1 es romano; la cursiva es solo el título Colección, registro editorial de revista de moda dado por la dirección de arte"
+      },
+      {
+        "rule": "oversized-h1",
+        "value": "*",
+        "files": [
+          "index.src.html"
+        ],
+        "createdAt": "2026-10-23T16:46:26.598Z",
+        "reason": "Claude: lo visible del h1 es una sola palabra, ALTIVA; el resto es texto solo para lectores de pantalla"
+      },
+      {
+        "rule": "cream-palette",
+        "value": "*",
+        "files": [
+          "index.src.html"
+        ],
+        "createdAt": "2026-10-23T16:46:26.609Z",
+        "reason": "user confirmed: Valentín dio la paleta de marca con el crema #FDF4E7"
+      },
+      {
+        "rule": "all-caps-body",
+        "value": "*",
+        "files": [
+          "index.src.html"
+        ],
+        "createdAt": "2026-11-10T00:22:45.734Z",
+        "reason": "Subtítulos en Century Gothic Pro en mayúsculas: pedido explícito del usuario (sistema tipográfico de la marca)"
+      }
+    ]
+  }
+}
