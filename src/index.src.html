@@ -103,7 +103,7 @@ img{max-width:100%;display:block}
 
 /* portada: el logo al centro y a los costados el patrón que baja sin fin */
 .landing > .portada{position:relative;height:calc(var(--header) + 56svh);min-height:520px;background:var(--crema)}
-.landing > .portada > .banda{position:absolute;left:0;right:0;bottom:0;top:var(--header);overflow:hidden;background:var(--crema-2);z-index:1}
+.landing > .portada > .banda{position:absolute;left:0;right:0;bottom:0;top:var(--header);overflow:hidden;background:var(--crema-2);z-index:1;border-top:1.5px solid #4a2a1a;border-bottom:1.5px solid #4a2a1a}
 .pat{position:absolute;left:50%;top:50%;width:var(--pat-l,1600px);height:var(--pat-l,1600px);margin:calc(var(--pat-l,1600px) / -2) 0 0 calc(var(--pat-l,1600px) / -2);transform:rotate(45deg)}
 .pat-mov{position:absolute;inset:calc(var(--pat-c,360px) * -1) 0 0 calc(var(--pat-c,360px) * -1)}
 .pat-fila{display:flex;align-items:center;height:var(--pat-r,90px);white-space:nowrap;animation:fila 18s linear infinite;will-change:transform}
@@ -114,16 +114,6 @@ img{max-width:100%;display:block}
 @keyframes fila{from{transform:translateX(0)}to{transform:translateX(calc(var(--pat-c,360px) * -1))}}
 .landing > .portada > .logo-cuadro{position:absolute;left:50%;top:calc(var(--header) + 28svh);z-index:5;width:min(46vw,460px);aspect-ratio:2.1/1;transform:translate(-50%,-50%);background:#fff;display:flex;align-items:center;justify-content:center;padding:clamp(20px,3.2vw,40px) clamp(28px,4.5vw,56px);box-shadow:0 30px 60px -34px rgba(19,32,38,.5)}
 .logo-cuadro::before{content:"";position:absolute;inset:12px;border:1px solid rgba(19,32,38,.55);pointer-events:none}
-/* marco cosido (portada): arriba costura completa; abajo la costura llega a la mitad y sigue el hilo suelto hasta el alfiler */
-.hilo,.landing > .portada > .hilo{position:absolute;left:0;right:0;height:26px;z-index:3;pointer-events:none;color:#4a2a1a}
-.hilo-sup{top:calc(var(--header) + 6px)}
-.hilo-inf{bottom:18px}
-.hilo svg{position:absolute;top:0;height:100%;overflow:visible}
-.hilo-sup .tr{left:0;width:100%}
-.hilo-inf .tr{left:0;width:48%}
-.hilo-inf .suelto{left:48%;width:110px}
-.hilo .alf{top:50%;left:calc(48% + 110px);width:70px;height:70px;margin-top:-35px;filter:drop-shadow(0 2px 1.5px rgba(40,22,12,.35))}
-@media (max-width:960px){.hilo-inf .tr{width:40%}.hilo-inf .suelto{left:40%;width:80px}.hilo .alf{left:calc(40% + 80px);width:56px;height:56px;margin-top:-28px}}
 .logo-cuadro h1{margin:0;width:100%}
 .logo-cuadro img{width:100%;height:auto}
 @media (max-width:960px){.landing > .portada{height:calc(var(--header) + 50svh);min-height:420px}.landing > .portada > .logo-cuadro{top:calc(var(--header) + 25svh);width:72vw;padding:18px 22px}.pat-fila span{font-size:13px}.pat-fila img{width:80px}}
@@ -813,14 +803,6 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
 
   <section class="portada" id="portada" aria-labelledby="t-portada">
     <div class="banda" aria-hidden="true" data-ui><div class="pat"><div class="pat-mov"></div></div></div>
-    <div class="hilo hilo-sup" aria-hidden="true">
-      <svg class="tr" viewBox="0 0 1000 26" preserveAspectRatio="none"><path d="M0 13 C 90 10, 170 16, 260 13 S 430 10, 520 13 S 700 16, 800 12 S 940 11, 1000 13" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="11 7" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M0 13 C 90 10, 170 16, 260 13 S 430 10, 520 13 S 700 16, 800 12 S 940 11, 1000 13" fill="none" stroke="#a87656" stroke-width=".6" stroke-dasharray="11 7" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity=".7" transform="translate(0 -.6)"/></svg>
-    </div>
-    <div class="hilo hilo-inf" aria-hidden="true">
-      <svg class="tr" viewBox="0 0 1000 26" preserveAspectRatio="none"><path d="M0 13 C 120 16, 260 10, 400 13 S 700 16, 800 12 S 940 11, 1000 13" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="11 7" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M0 13 C 120 16, 260 10, 400 13 S 700 16, 800 12 S 940 11, 1000 13" fill="none" stroke="#a87656" stroke-width=".6" stroke-dasharray="11 7" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity=".7" transform="translate(0 -.6)"/></svg>
-      <svg class="suelto" viewBox="0 0 110 26" preserveAspectRatio="none"><path d="M0 13 C 20 13, 30 23, 55 22 C 80 21, 92 13, 110 13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" vector-effect="non-scaling-stroke"/></svg>
-      <svg class="alf" viewBox="0 0 70 70"><path d="M0 35 C 10 33, 20 37, 30 35 C 38 33, 43 28, 39 26 C 35 24, 31 31, 36 36 C 40 40, 46 41, 53 45" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><line x1="17" y1="59" x2="54" y2="16" stroke="#aaa59e" stroke-width="2.2" stroke-linecap="round"/><line x1="18" y1="57" x2="53" y2="17" stroke="#fff" stroke-width=".7" stroke-linecap="round" opacity=".75"/><circle cx="56" cy="13.5" r="7.5" fill="#5a3322"/><circle cx="53.6" cy="11" r="2.4" fill="#d3a684" opacity=".9"/></svg>
-    </div>
     <div class="logo-cuadro"><h1 id="t-portada"><img src="{{F:logo_full}}" width="{{W:logo_full}}" height="{{H:logo_full}}" alt="ALTIVA by Alejandra Prieto"></h1></div>
   </section>
 
