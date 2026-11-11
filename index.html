@@ -134,7 +134,10 @@ img{max-width:100%;display:block}
 .hilo-t .nudo,.hilo-m .nudo{transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
 .hilo-t .nudo.on,.hilo-m .nudo.on{transform:scale(1)}
 .hilo-t .aguja{transition:opacity .3s}
-@media (min-width:961px){.proceso .proc-cab,.proceso .pasos-f{padding-left:84px}}
+@media (min-width:961px){.proceso .proc-cab,.proceso .pasos-f{padding-left:84px}.proceso .proc-cab{gap:34px}}
+.fin-costura{display:block;width:min(100%,24ch);height:20px;margin-top:-14px;overflow:visible;clip-path:inset(-10px 100% -10px 0);transition:clip-path 1.1s cubic-bezier(.6,0,.3,1)}
+.fin-costura.on{clip-path:inset(-10px -12px -10px 0)}
+@media (max-width:960px){.fin-costura{margin-top:-6px;height:14px}}
 .hilo-m{display:none}
 @media (max-width:960px){
   .hilo-t{display:none}
@@ -424,9 +427,9 @@ img{max-width:100%;display:block}
 
 
 /* colección por cápsulas */
-.col-hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:18px;align-items:end;margin-bottom:clamp(56px,7vw,96px)}
+.col-hero{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));column-gap:var(--gap);row-gap:14px;align-items:end;margin-bottom:clamp(40px,5vw,64px)}
 .col-kicker{grid-column:1 / -1;font-size:var(--s-small);letter-spacing:.14em;text-transform:uppercase;color:var(--pizarra)}
-.col-hero h1{grid-column:1 / span 7;font-size:var(--s-big);line-height:.9}
+.col-hero h1{grid-column:1 / span 7;font-size:var(--s-head);line-height:.95}
 .col-lead{grid-column:8 / span 5;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-size:var(--s-small);line-height:1.7}
 .col-nav{grid-column:1 / -1;display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;padding-top:22px;border-top:1px solid rgba(19,32,38,.14)}
 .col-nav a{display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:0 18px 0 8px;background:var(--tex2),var(--crema-2);color:var(--noche);text-decoration:none;font-size:15px;transition:background .2s,color .2s}
@@ -434,15 +437,15 @@ img{max-width:100%;display:block}
 .col-nav a:hover{background:var(--noche);color:var(--crema)}
 .col-nav a:hover b{background:var(--crema);color:var(--noche)}
 .col-nav .prox-l b{background:transparent;color:var(--noche);box-shadow:inset 0 0 0 1px var(--noche)}
-.cap{margin-bottom:clamp(88px,10vw,140px)}
-.cap-cab{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,.9fr);gap:12px clamp(20px,3vw,48px);align-items:end;margin-bottom:clamp(44px,5vw,64px)}
-.cap-n{font-family:var(--display);font-size:clamp(5.5rem,3rem + 7vw,10rem);line-height:.78;color:transparent;-webkit-text-stroke:1.2px var(--noche);letter-spacing:-.02em}
+.cap{margin-bottom:clamp(64px,7vw,104px)}
+.cap-cab{display:grid;grid-template-columns:auto minmax(0,1fr) minmax(0,.9fr);gap:10px clamp(18px,2.4vw,36px);align-items:end;margin-bottom:22px}
+.cap-n{font-family:var(--display);font-size:clamp(3.6rem,2rem + 4vw,6rem);line-height:.78;color:transparent;-webkit-text-stroke:1.2px var(--noche);letter-spacing:-.02em}
 .cap-meta{font-size:var(--s-small);letter-spacing:.14em;text-transform:uppercase;color:var(--pizarra);margin-bottom:10px}
-.cap-tit h2{font-size:var(--s-head);line-height:.95}
-.cap-der p{color:var(--muted);max-width:44ch;margin-bottom:14px}
+.cap-tit h2{font-size:var(--s-sub);line-height:1}
+.cap-der p{color:var(--muted);max-width:46ch;margin-bottom:10px;font-size:15px;line-height:1.55}
 .cap-cuenta{display:inline-flex;align-items:center;gap:10px;font-size:var(--s-small);color:var(--noche)}
 .cap-cuenta i{width:8px;height:8px;border-radius:50%;background:#5f7d5a;box-shadow:0 0 0 4px rgba(95,125,90,.18)}
-.rack{list-style:none;margin:0;padding:46px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:56px var(--gap);background:linear-gradient(#e2c595,#a07a45 55%,#6e5130) no-repeat 0 10px / 100% 5px;position:relative}
+.rack{list-style:none;margin:0 auto;padding:40px 0 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:36px clamp(16px,2vw,28px);background:linear-gradient(#e2c595,#a07a45 55%,#6e5130) no-repeat 0 10px / 100% 5px;position:relative}
 .percha{position:relative;transform-origin:50% -34px;transition:transform .7s cubic-bezier(.34,1.56,.64,1)}
 .percha::before{content:"";position:absolute;left:50%;top:-42px;width:22px;height:40px;transform:translateX(-50%);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 40'%3E%3Cpath d='M11 39 V24 c0-4 7-5 7-12 c0-4-3-8-7-8 s-7 3-7 7' fill='none' stroke='%237d7872' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat center/contain;pointer-events:none}
 .percha:hover{transform:rotate(-1.4deg)}
@@ -455,11 +458,11 @@ img{max-width:100%;display:block}
 .encargo b{font-family:var(--display);font-weight:400;font-size:var(--s-sub);line-height:1.1}
 .encargo span{color:var(--muted);max-width:26ch}
 .encargo em{font-style:normal;margin-top:6px;border-bottom:1px solid currentColor;padding-bottom:2px}
-.cap-prox{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--gap);align-items:center;padding:clamp(40px,6vw,88px);margin-inline:calc(-1 * clamp(0px,1vw,12px))}
+.cap-prox{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--gap);align-items:center;padding:clamp(32px,4vw,56px);margin-inline:calc(-1 * clamp(0px,1vw,12px))}
 .cap-prox .cap-meta{color:var(--niebla)}
-.cap-prox h2{font-size:var(--s-big);line-height:.9;margin-bottom:22px}
+.cap-prox h2{font-size:var(--s-head);line-height:.95;margin-bottom:16px}
 .cap-prox .prox-txt p:not(.cap-meta){max-width:42ch;color:var(--niebla);margin-bottom:28px}
-.prox-rack{display:flex;justify-content:space-around;align-items:flex-start;padding-top:22px;background:linear-gradient(#e2c595,#a07a45 55%,#6e5130) no-repeat 0 6px / 100% 4px;color:var(--crema)}
+/*x*/.prox-rack-x{display:flex;justify-content:space-around;align-items:flex-start;padding-top:22px;background:linear-gradient(#e2c595,#a07a45 55%,#6e5130) no-repeat 0 6px / 100% 4px;color:var(--crema)}
 .prox-rack svg{width:30%;transform-origin:50% 0;animation:vacia 3.6s calc(var(--i) * -1.1s) ease-in-out infinite alternate}
 @keyframes vacia{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
 @media (prefers-reduced-motion: reduce){.percha.hamaca,.prox-rack svg{animation:none}}
@@ -469,14 +472,26 @@ img{max-width:100%;display:block}
   .col-nav::-webkit-scrollbar{display:none}
   .col-nav a{flex:none}
   .cap-cab{grid-template-columns:auto minmax(0,1fr);align-items:end}
-  .cap-n{font-size:5.2rem}
+  .cap-n{font-size:3.6rem}
   .cap-der{grid-column:1 / -1}
   .rack{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:18px;margin-inline:-16px;padding-inline:16px;scroll-padding-inline:16px;background-attachment:local;background-size:calc(100% - 0px) 5px;scrollbar-width:none;padding-bottom:6px}
   .rack::-webkit-scrollbar{display:none}
-  .percha{flex:0 0 72vw;max-width:320px;scroll-snap-align:start}
+  .percha{flex:0 0 58vw;max-width:260px;scroll-snap-align:start}
+  #v-tienda .cap-historia{grid-template-columns:minmax(0,1fr)}
   .cap-prox{grid-template-columns:1fr;margin-inline:-16px;padding:44px 20px}
   .prox-rack{order:-1}
 }
+.cap-historia{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);gap:14px clamp(20px,3vw,48px);align-items:start;margin-bottom:26px;padding:18px 0 0;border-top:1px solid rgba(19,32,38,.14)}
+.cap-porque{font-size:15px;line-height:1.6;color:var(--pizarra);max-width:62ch}
+.cap-porque b{font-family:var(--display);font-weight:400;font-size:1.15em;color:var(--noche)}
+.cap-claves{list-style:none;padding:0;margin:0;display:flex;flex-wrap:wrap;gap:8px}
+.cap-claves li{font-size:13px;padding:6px 12px;background:var(--flor-c),#fffaf2;border:1px solid rgba(19,32,38,.12)}
+.cap-prox .cap-porque{color:var(--niebla)}
+.cap-prox .cap-porque b{color:var(--crema)}
+.cap-prox .cap-claves li{background:rgba(253,244,231,.08);border-color:rgba(253,244,231,.2);color:var(--crema)}
+.prox-hist{display:flex;flex-direction:column;gap:16px;padding-left:clamp(0px,3vw,40px);border-left:1px solid rgba(253,244,231,.18)}
+.rack .prod-info h3{font-size:var(--s-lead)}
+@media (max-width:960px){.prox-hist{padding-left:0;border-left:0;border-top:1px solid rgba(253,244,231,.18);padding-top:18px}}
 /* colección: tienda de ropa */
 .barra-tienda{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;margin-bottom:40px;padding-bottom:20px;border-bottom:1px solid rgba(19,32,38,.14)}
 .barra-tienda .filtros{margin:0}
@@ -722,6 +737,45 @@ img{max-width:100%;display:block}
 .alfi-fin{margin-top:24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
 .alfi-fin p{font-family:var(--display);font-size:var(--s-sub)}
 .alfi-r{display:none}
+/* preguntas compactas: todo en una pantalla */
+@media (min-width:961px){
+  #v-preguntas.pagina{padding-top:calc(var(--header) + 28px);padding-bottom:56px}
+  #v-preguntas .intro-pag{margin-bottom:18px;align-items:end}
+  #v-preguntas .intro-pag h1{font-size:var(--s-head);line-height:1}
+  #v-preguntas .intro-pag p{font-size:var(--s-small)}
+  #v-preguntas .alfi{grid-template-columns:minmax(0,.85fr) minmax(0,1fr);gap:clamp(20px,3vw,48px);align-items:start}
+  #v-preguntas .alfi-escena{max-height:min(52vh,480px)}
+  #v-preguntas .alfi-ayuda{font-size:var(--s-lead);margin-top:-14px}
+  #v-preguntas .alfi-cuenta{margin-bottom:12px}
+  #v-preguntas .alfi-tarjeta{padding:22px 28px 24px;min-height:0}
+  #v-preguntas .alfi-n{font-size:clamp(32px,3vw,44px);margin-bottom:6px}
+  #v-preguntas .alfi-tarjeta h2{font-size:var(--s-lead);margin-bottom:8px}
+  #v-preguntas .alfi-tarjeta p{font-size:15px;line-height:1.55}
+  #v-preguntas .alfi-lista{margin-top:18px;gap:6px}
+  #v-preguntas .alfi-lista button{min-height:44px;font-size:13.5px;padding:8px 12px}
+  #v-preguntas .alfi-fin{margin-top:16px}
+  #v-preguntas .pag-pie{margin-top:32px}
+}
+@media (max-width:960px){
+  #v-preguntas .intro-pag{margin-bottom:8px}
+  #v-preguntas .intro-pag h1{font-size:clamp(2.2rem,9vw,3rem)}
+  #v-preguntas .alfi-escena{width:min(100%,46svh)}
+  #v-preguntas .alfi-ayuda{font-size:var(--s-lead)}
+  #v-preguntas .alfi-lista button{min-height:48px;padding:10px 14px;font-size:15px}
+  #v-preguntas .alfi-r p{font-size:15px}
+}
+/* tu cuenta un poco más compacta */
+#v-cuenta .cu-hola{font-size:var(--s-head)}
+#v-cuenta .cu-top{margin-bottom:18px}
+#v-cuenta .cu-tabs{margin-bottom:24px}
+#v-cuenta .cu-tabs button{min-height:46px;font-size:15px}
+#v-cuenta .cu-card{padding:clamp(20px,2.4vw,30px);gap:10px}
+#v-cuenta .cu-card h2{font-size:var(--s-sub)}
+#v-cuenta .cu-cuando{font-size:var(--s-body)}
+#v-cuenta .cu-estado .nota-ale{font-size:var(--s-body)}
+#v-cuenta .cu-atajos button{min-height:72px;padding:14px 18px}
+#v-cuenta .cu-atajos button b{font-size:var(--s-body)}
+#v-cuenta .cu-head h2{font-size:var(--s-sub)}
 @media (max-width:960px){
   .alfi{grid-template-columns:1fr;gap:12px}
   .alfi-escena{max-height:none;width:min(100%,62svh);aspect-ratio:1/.92}
@@ -1046,8 +1100,8 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
           <linearGradient id="g-aguja" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7d7a76"/><stop offset=".45" stop-color="#f4f2ee"/><stop offset=".6" stop-color="#c9c5bf"/><stop offset="1" stop-color="#6c6965"/></linearGradient>
           <mask id="m-hilo" maskUnits="userSpaceOnUse"><path class="h-rev" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/></mask>
         </defs>
-        <path class="h-sombra" fill="none" stroke="rgba(40,22,12,.16)" stroke-width="2.6" stroke-linecap="round" transform="translate(1.5 2.5)" mask="url(#m-hilo)"/>
-        <g mask="url(#m-hilo)"><path class="h-base" fill="none" stroke="#4a2a1a" stroke-width="2.4" stroke-linecap="round"/><path class="h-torsion" fill="none" stroke="#9b6a4c" stroke-width="1" stroke-dasharray="1.6 2.6" stroke-linecap="round"/></g>
+        <path class="h-sombra" fill="none" stroke="rgba(40,22,12,.22)" stroke-width="3" stroke-dasharray="11 6" stroke-linecap="round" transform="translate(.8 1.6)" mask="url(#m-hilo)"/>
+        <g mask="url(#m-hilo)"><path class="h-base" fill="none" stroke="#4a2a1a" stroke-width="3" stroke-dasharray="11 6" stroke-linecap="round"/><path class="h-luz" fill="none" stroke="#b07f5f" stroke-width="1" stroke-dasharray="11 6" stroke-linecap="round" transform="translate(-.5 -.7)"/></g>
         <g class="h-nudos"></g>
         <g class="aguja"><g class="aguja-r"><path d="M-2.1 -4 L-1.6 40 L0 52 L1.6 40 L2.1 -4 Q2.1 -9 0 -9 Q-2.1 -9 -2.1 -4 Z" fill="url(#g-aguja)" stroke="#5d5a56" stroke-width=".4"/><rect x="-.7" y="-6.5" width="1.4" height="6" rx=".7" fill="#e9dccb"/></g></g>
       </svg>
@@ -1066,6 +1120,7 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
     <div class="final-pin marco-pag">
       <div class="final-txt">
         <h2 id="t-fin">Vuelve a su funda.</h2>
+        <svg class="fin-costura" id="fin-costura" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 C 90 12, 200 4, 300 9 S 380 10, 392 8" fill="none" stroke="#4a2a1a" stroke-width="3" stroke-dasharray="11 6" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M2 8 C 90 12, 200 4, 300 9 S 380 10, 392 8" fill="none" stroke="#b07f5f" stroke-width="1" stroke-dasharray="11 6" stroke-linecap="round" vector-effect="non-scaling-stroke" transform="translate(-.5 -.7)"/><g transform="translate(392 8)"><circle r="5" fill="#4a2a1a"/><circle cx="-1.4" cy="-1.5" r="1.4" fill="#c99878"/></g></svg>
         <p>Tu vestido no se entrega en una bolsa: se va guardado como lo que es, un tesoro hecho a mano. Y cada envase se queda en tu casa.</p>
         <button class="btn" data-ir="reservar">Reservar entrevista</button>
       </div>
@@ -1080,7 +1135,7 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
 
 <div class="hilo-m" id="hilo-m" aria-hidden="true"><svg id="hilo-m-svg"><defs><linearGradient id="g-aguja-m" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7d7a76"/><stop offset=".45" stop-color="#f4f2ee"/><stop offset=".6" stop-color="#c9c5bf"/><stop offset="1" stop-color="#6c6965"/></linearGradient><mask id="m-hilo-m" maskUnits="userSpaceOnUse"><path class="h-rev" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/></mask></defs>
   <path class="h-guia" fill="none" stroke="rgba(74,42,26,.18)" stroke-width="1.2" stroke-dasharray="3 5"/>
-  <g mask="url(#m-hilo-m)"><path class="h-base" fill="none" stroke="#4a2a1a" stroke-width="2.4" stroke-linecap="round"/><path class="h-torsion" fill="none" stroke="#9b6a4c" stroke-width="1" stroke-dasharray="1.6 2.6" stroke-linecap="round"/></g>
+  <g mask="url(#m-hilo-m)"><path class="h-base" fill="none" stroke="#4a2a1a" stroke-width="2.6" stroke-dasharray="9 5" stroke-linecap="round"/><path class="h-luz" fill="none" stroke="#b07f5f" stroke-width=".9" stroke-dasharray="9 5" stroke-linecap="round" transform="translate(-.4 -.6)"/></g>
   <g class="h-nudos"></g>
   <g class="aguja"><g class="aguja-r"><path d="M-2.1 -4 L-1.6 30 L0 40 L1.6 30 L2.1 -4 Q2.1 -9 0 -9 Q-2.1 -9 -2.1 -4 Z" fill="url(#g-aguja-m)" stroke="#5d5a56" stroke-width=".4"/><rect x="-.7" y="-6.5" width="1.4" height="6" rx=".7" fill="#e9dccb"/></g></g>
 </svg></div>
@@ -1262,10 +1317,16 @@ const VESTIDOS = [
 ];
 const CATS = ["Todos","15 años","Egresadas","Novias","Invitadas"];
 const CAPSULAS = [
-  {n:"01", nombre:"Noche de Bulevar", temp:"Drop primavera 2026", desc:"Satén, lamé y crepe para las noches de fiesta. Pensada para egresadas e invitadas que quieren brillar sin disfrazarse.", piezas:["noche-de-bulevar","plata","milonga"]},
-  {n:"02", nombre:"Marfil", temp:"Novias y 15 · siempre abierta", desc:"Los blancos del atelier: raso duchesse, tul de seda y encaje. Siluetas para el día más grande, que ajusto pieza por pieza.", piezas:["aurora","ofelia"], encargo:true}
+  {n:"01", nombre:"Noche de Bulevar", temp:"Drop primavera 2026", desc:"Satén, lamé y crepe para las noches de fiesta. Tres vestidos para egresadas e invitadas que quieren brillar sin disfrazarse.",
+   porque:"Mi atelier está en Los Bulevares, en Córdoba. Esta cápsula nació mirando esas noches de verano: el satén azul como el cielo a las once, el lamé como las luces de la avenida y el crepe para bailar hasta tarde.",
+   claves:["Azul noche, plata y pizarra","Escotes en la espalda","Largos que dejan caminar"], piezas:["noche-de-bulevar","plata","milonga"]},
+  {n:"02", nombre:"Marfil", temp:"Novias y 15 · siempre abierta", desc:"Los blancos del atelier: raso duchesse, tul de seda y encaje. Siluetas para el día más grande, que ajusto pieza por pieza.",
+   porque:"El marfil no es un blanco puro: es el blanco de las telas nobles cuando les da la luz. Lo elegí porque abriga la piel y cambia con cada vestido, como cambia cada novia y cada quinceañera.",
+   claves:["Raso, tul de seda y encaje","Corsets con ballenas a mano","Cada pieza se ajusta a tu medida"], piezas:["aurora","ofelia"], encargo:true}
 ];
-const PROXIMA = {n:"03", nombre:"Tango", estado:"En el taller", desc:"Vuelvo al vestuario con el que empecé: espaldas descubiertas, flecos y vestidos que se mueven cuando bailás. Van a ser pocas piezas."};
+const PROXIMA = {n:"03", nombre:"Tango", estado:"En el taller", desc:"Vuelvo al vestuario con el que empecé: espaldas descubiertas, flecos y vestidos que se mueven cuando bailás.",
+  porque:"Antes de vestir novias hice vestuario de tango durante años. Esta cápsula es volver a ese origen: telas que acompañan el giro, cortes que dejan ver la espalda y un largo pensado para el abrazo.",
+  claves:["Flecos y crepe pesado","Espaldas descubiertas","Pocas piezas, numeradas"]};
 const precioTxt = v => v.precio ? "$ " + v.precio.toLocaleString("es-AR") : "Consultar";
 
 const st = {vista:"inicio", filtro:"Todos", sel:leer("altiva.sel",[]), usuaria:leer("altiva.usuaria",null), extra:leer("altiva.turnoNuevo",null)};
@@ -2264,6 +2325,7 @@ function tienda(){
         <div class="cap-tit"><p class="cap-meta">Cápsula ${c.n} · ${esc(c.temp)}</p><h2 id="cap-t-${c.n}">${esc(c.nombre)}</h2></div>
         <div class="cap-der"><p>${esc(c.desc)}</p><span class="cap-cuenta"><i></i>${vs.length} piezas únicas · ${libres} ${libres === 1 ? "disponible" : "disponibles"}</span></div>
       </header>
+      <div class="cap-historia"><p class="cap-porque"><b>Por qué se llama ${esc(c.nombre)}.</b> ${esc(c.porque)}</p><ul class="cap-claves">${c.claves.map(k => `<li>${esc(k)}</li>`).join("")}</ul></div>
       <ul class="rack">${vs.map(v => percha(tarjeta(v))).join("")}${c.encargo ? encargo : ""}</ul>
     </section>`;
   }).join("");
@@ -2274,7 +2336,7 @@ function tienda(){
         <p>${esc(PROXIMA.desc)}</p>
         <a class="btn" target="_blank" rel="noopener" href="${wa("Hola Alejandra, quiero que me avises cuando salga la cápsula Tango.")}">Avisame cuando salga</a>
       </div>
-      <div class="prox-rack" aria-hidden="true">${[0,1,2].map(i => `<svg viewBox="0 0 120 70" style="--i:${i}"><path d="M60 4 c6 0 9 4 9 8 c0 5 -5 7 -9 9 v6 L112 54 c4 3 2 8 -3 8 H11 c-5 0 -7 -5 -3 -8 L60 27" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`).join("")}</div>
+      <div class="prox-hist"><p class="cap-porque"><b>Por qué se llama Tango.</b> ${esc(PROXIMA.porque)}</p><ul class="cap-claves">${PROXIMA.claves.map(k => `<li>${esc(k)}</li>`).join("")}</ul></div>
     </section>`;
   $("#col-caps").innerHTML = caps + prox;
   $("#col-nav").onclick = e => { const a = e.target.closest("[data-cap]"); if(!a) return; e.preventDefault(); const t = $("#cap-" + a.dataset.cap); if(t) scrollTo({top: t.getBoundingClientRect().top + scrollY - parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header")) - 20, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}); };
@@ -2497,40 +2559,56 @@ if(document.fonts && document.fonts.ready) document.fonts.ready.then(medir);
 addEventListener("load", medir);
 /* ===== hilo de la línea de tiempo (proceso) ===== */
 (() => {
-  const sec = $("#proceso"), svg = $("#hilo-t"), cm = $("#hilo-m"), NS = "http://www.w3.org/2000/svg";
+  const sec = $("#proceso"), svg = $("#hilo-t"), cm = $("#hilo-m"), fin = $("#final"), NS = "http://www.w3.org/2000/svg";
   if(!sec || !svg || !cm) return;
   const lis = $$("#pasos-f li"), movil = () => matchMedia("(max-width:960px)").matches;
   const cl = (v, a, b) => Math.min(b, Math.max(a, v));
-  /* nudo francés: una bolita de hilo con vueltas visibles */
-  const nudo = (g, x, y, r) => { const n = document.createElementNS(NS, "g"); n.setAttribute("class", "nudo");
-    n.innerHTML = `<circle cx="${x}" cy="${y}" r="${r}" fill="#4a2a1a"/>`
-      + `<path d="M${x - r*.6} ${y - r*.25} q${r*.6} ${-r*.55} ${r*1.2} 0 M${x - r*.62} ${y + r*.22} q${r*.62} ${r*.52} ${r*1.24} 0 M${x - r*.2} ${y - r*.7} q${-r*.42} ${r*.7} 0 ${r*1.4}" fill="none" stroke="#a5735a" stroke-width=".9" stroke-linecap="round"/>`
-      + `<circle cx="${x - r*.3}" cy="${y - r*.34}" r="${r*.22}" fill="#d0a184" opacity=".85"/>`;
+  /* botón de cuatro agujeros, cosido con una cruz de hilo */
+  const boton = (g, x, y, r) => { const n = document.createElementNS(NS, "g"); n.setAttribute("class", "nudo");
+    const h = r * .32, hr = r * .13;
+    n.innerHTML = `<circle cx="${x + .8}" cy="${y + 1.4}" r="${r}" fill="rgba(40,22,12,.22)"/>`
+      + `<circle cx="${x}" cy="${y}" r="${r}" fill="#efe2cf" stroke="#a88866" stroke-width="1"/>`
+      + `<circle cx="${x}" cy="${y}" r="${r * .72}" fill="none" stroke="#cdb497" stroke-width=".9"/>`
+      + [[-1,-1],[1,-1],[-1,1],[1,1]].map(([a,b]) => `<circle cx="${x + a*h}" cy="${y + b*h}" r="${hr}" fill="#6d5038"/>`).join("")
+      + `<path d="M${x-h} ${y-h} L${x+h} ${y+h} M${x+h} ${y-h} L${x-h} ${y+h}" stroke="#4a2a1a" stroke-width="${r*.17}" stroke-linecap="round"/>`
+      + `<circle cx="${x - r*.38}" cy="${y - r*.42}" r="${r*.2}" fill="#fff" opacity=".55"/>`;
     g.appendChild(n); return n; };
-  /* curva con un leve vaivén entre puntos, como un hilo que cae */
-  function onda(pts){
-    let d = `M${pts[0][0]} ${pts[0][1]}`;
-    for(let k = 1; k < pts.length; k++){
-      const [x0, y0] = pts[k-1], [x1, y1] = pts[k], dy = y1 - y0, sw = (k % 2 ? 1 : -1) * Math.min(20, dy * .05);
-      d += ` C${x0 + sw} ${y0 + dy*.35}, ${x1 - sw} ${y1 - dy*.35}, ${x1} ${y1}`;
-    }
-    return d;
-  }
   let D = null, M = null, tick = false;
+  const pt = (p, l) => p.getPointAtLength(l);
   function medirD(){
     const mp = $(".marco-pag", sec), base = mp.getBoundingClientRect(), x = parseFloat(getComputedStyle(mp).paddingLeft) + 30;
-    const h2 = $(".proc-cab h2", sec).getBoundingClientRect();
-    const ys = lis.map(li => { const h = $("h3", li).getBoundingClientRect(); return h.top - base.top + Math.min(h.height, 64) * .42; });
-    const y0 = h2.top - base.top + 14, yEnd = ys[ys.length - 1] + 220, H = yEnd + 80;
-    const d = onda([[x, y0], ...ys.map(y => [x, y]), [x, yEnd]]);
+    const rel = r => ({l: r.left - base.left, r: r.right - base.left, t: r.top - base.top, b: r.bottom - base.top});
+    /* sale del título: corre bajo "Estoy en cada etapa." y baja */
+    const offT = el => { let t = 0, n = el; while(n && n !== mp){ t += n.offsetTop; n = n.offsetParent; } return t; };
+    const h2el = $(".proc-cab h2", sec), h2 = rel(rangoTexto(h2el)), corr = (h2el.getBoundingClientRect().top - base.top) - offT(h2el);
+    h2.t -= corr; h2.b -= corr;
+    const ys = lis.map(li => { const h = rel($("h3", li).getBoundingClientRect()); return h.t + Math.min(h.b - h.t, 64) * .42; });
+    const ld = $(".proc-cab .lead", sec), lt = ld ? offT(ld) : h2.b + 34, u = Math.round((h2.b + lt) / 2) + 2;
+    let d = `M${h2.r} ${u} C${h2.r - 60} ${u + 4}, ${h2.l + 40} ${u - 4}, ${h2.l} ${u}`;
+    d += ` C${h2.l - 30} ${u + 2}, ${x} ${u}, ${x} ${u + 50}`;
+    let px = x, py = u + 50;
+    ys.forEach((y, k) => { const dy = y - py, sw = (k % 2 ? 1 : -1) * Math.min(20, dy * .05); d += ` C${px + sw} ${py + dy*.35}, ${x - sw} ${y - dy*.35}, ${x} ${y}`; py = y; });
+    /* termina en "Vuelve a su funda": baja hasta el título y se une a su costura */
+    let fx = x, fy = py + 300;
+    const ft = fin && $(".final-txt h2", fin), pin = fin && $(".final-pin", fin);
+    if(ft && pin && getComputedStyle($(".final-txt", fin)).display !== "none"){
+      const fr = rangoTexto(ft), pr = pin.getBoundingClientRect(), fTop = fin.getBoundingClientRect().top;
+      fx = fr.left - base.left; fy = fTop + (fr.bottom - pr.top) - base.top + 10;
+    }
+    const dy = fy - py; d += ` C${x + 18} ${py + dy*.4}, ${fx - 40} ${fy - 4}, ${fx} ${fy}`;
+    const H = fy + 40;
     svg.setAttribute("height", H); svg.setAttribute("viewBox", `0 0 ${base.width} ${H}`);
-    $$(".h-base, .h-torsion, .h-sombra, .h-rev", svg).forEach(p => p.setAttribute("d", d));
+    $$(".h-base, .h-luz, .h-sombra, .h-rev", svg).forEach(p => p.setAttribute("d", d));
     const ref = $(".h-base", svg), L = ref.getTotalLength(), S = [];
-    for(let k = 0; k <= 300; k++){ const l = L * k / 300; S.push([l, ref.getPointAtLength(l).y]); }
+    for(let k = 0; k <= 400; k++){ const l = L * k / 400; S.push([l, pt(ref, l).y]); }
     const g = $(".h-nudos", svg); g.innerHTML = "";
     $(".h-rev", svg).setAttribute("stroke-dasharray", `${L} ${L}`);
-    D = { L, S, ref, ys, nudos: ys.map(y => nudo(g, x, y, 6.4)) };
+    /* el tramo bajo el título de arriba ya está cosido al llegar */
+    let l0 = 0; for(let k = 1; k < S.length; k++){ if(pt(ref, S[k][0]).x <= x + 2){ l0 = S[k][0]; break; } }
+    D = { L, S, ref, ys, l0, nudos: ys.map(y => boton(g, x, y, 9)) };
   }
+  function rangoTexto(el){ const r = document.createRange(); r.selectNodeContents(el); const rs = [...r.getClientRects()]; if(!rs.length) return el.getBoundingClientRect();
+    const last = rs[rs.length - 1]; return {left: Math.min(...rs.map(q => q.left)), right: last.right, top: rs[0].top, bottom: last.bottom}; }
   function medirM(){
     const w = innerWidth, y = 17, x0 = 10, x1 = w - 10;
     const xs = lis.map((_, k) => x0 + 26 + (x1 - x0 - 52) * k / (lis.length - 1));
@@ -2538,18 +2616,18 @@ addEventListener("load", medir);
     xs.forEach((x, k) => { const px = k ? xs[k-1] : x0, sw = k % 2 ? 3.5 : -3.5; d += ` C${px + (x - px)*.35} ${y + sw}, ${px + (x - px)*.65} ${y - sw}, ${x} ${y}`; });
     d += ` C${xs[xs.length-1] + 8} ${y + 3}, ${x1 - 8} ${y - 2}, ${x1} ${y}`;
     const s2 = $("#hilo-m-svg"); s2.setAttribute("viewBox", `0 0 ${w} 34`);
-    $$(".h-base, .h-torsion, .h-rev, .h-guia", s2).forEach(p => p.setAttribute("d", d));
+    $$(".h-base, .h-luz, .h-rev, .h-guia", s2).forEach(p => p.setAttribute("d", d));
     const ref = $(".h-base", s2), L = ref.getTotalLength(), g = $(".h-nudos", s2); g.innerHTML = "";
-    const ls = xs.map(x => { let a = 0, b = L; for(let i = 0; i < 26; i++){ const m = (a + b) / 2; ref.getPointAtLength(m).x < x ? a = m : b = m; } return a; });
+    const ls = xs.map(x => { let a = 0, b = L; for(let i = 0; i < 26; i++){ const m = (a + b) / 2; pt(ref, m).x < x ? a = m : b = m; } return a; });
     $(".h-rev", s2).setAttribute("stroke-dasharray", `${L} ${L}`);
-    M = { L, ref, ls, nudos: xs.map(x => nudo(g, x, y, 5.2)) };
+    M = { L, ref, ls, nudos: xs.map(x => boton(g, x, y, 7.5)) };
   }
-  /* la aguja va adelante: el ojo en la punta del hilo y la punta mirando hacia donde avanza */
   function poner(agu, ref, l, L){
-    const a = ref.getPointAtLength(cl(l, 0, L)), b = ref.getPointAtLength(cl(l + 3, 0, L)), c = l + 3 > L ? ref.getPointAtLength(cl(l - 3, 0, L)) : null;
+    const a = pt(ref, cl(l, 0, L)), b = pt(ref, cl(l + 3, 0, L)), c = l + 3 > L ? pt(ref, cl(l - 3, 0, L)) : null;
     const ang = (c ? Math.atan2(a.y - c.y, a.x - c.x) : Math.atan2(b.y - a.y, b.x - a.x)) * 180 / Math.PI - 90;
     agu.setAttribute("transform", `translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(${ang.toFixed(1)})`);
   }
+  const finC = $("#fin-costura");
   function pintar(){
     tick = false;
     if(!sec.offsetParent){ cm.classList.remove("vis"); return; }
@@ -2557,6 +2635,7 @@ addEventListener("load", medir);
       if(!M || !M.L) medirM();
       const r = sec.getBoundingClientRect(), vis = r.top < innerHeight * .45 && r.bottom > innerHeight * .9;
       cm.classList.toggle("vis", vis);
+      if(finC) finC.classList.toggle("on", fin && fin.getBoundingClientRect().top < innerHeight * .2);
       if(!vis) return;
       const fija = innerHeight - Math.min(innerHeight * .4, 320) - 14;
       const tops = lis.map(li => li.getBoundingClientRect().top), gap = Math.max(1, lis[1].offsetTop - lis[0].offsetTop);
@@ -2572,14 +2651,16 @@ addEventListener("load", medir);
     cm.classList.remove("vis");
     if(!D || D.L < 10) medirD();
     const top = $(".marco-pag", sec).getBoundingClientRect().top, ty = innerHeight * .56 - top, S = D.S;
-    if(top > innerHeight || top + S[S.length - 1][1] < -200) return;
-    let l = 0;
+    if(top > innerHeight * 1.2) return;
+    let l = D.l0;
     if(ty >= S[S.length - 1][1]) l = D.L;
-    else if(ty > S[0][1]) for(let k = 1; k < S.length; k++) if(S[k][1] >= ty){ const [l0, y0] = S[k-1], [l1, y1] = S[k]; l = l0 + (l1 - l0) * (ty - y0) / Math.max(1e-6, y1 - y0); break; }
+    else { let best = D.l0; for(let k = 1; k < S.length; k++){ if(S[k][0] < D.l0) continue; if(S[k][1] <= ty) best = S[k][0]; else break; } l = best; }
     $(".h-rev", svg).setAttribute("stroke-dashoffset", D.L - l);
-    const tipY = D.ref.getPointAtLength(l).y;
-    D.nudos.forEach((n, i) => n.classList.toggle("on", tipY >= D.ys[i] - 1));
-    $(".aguja", svg).style.opacity = l > 2 && l < D.L - 2 ? 1 : 0;
+    const tipY = pt(D.ref, l).y;
+    D.nudos.forEach((n, i) => n.classList.toggle("on", l > D.l0 + 4 && tipY >= D.ys[i] - 1));
+    const llego = l >= D.L - 2;
+    $(".aguja", svg).style.opacity = llego ? 0 : 1;
+    if(finC) finC.classList.toggle("on", llego);
     poner($(".aguja-r", svg), D.ref, l, D.L);
   }
   const pedir = () => { if(!tick){ tick = true; requestAnimationFrame(pintar); } };
