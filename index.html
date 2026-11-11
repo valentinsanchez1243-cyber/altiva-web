@@ -134,10 +134,7 @@ img{max-width:100%;display:block}
 .hilo-t .nudo,.hilo-m .nudo{transform-box:fill-box;transform-origin:center;transform:scale(0);transition:transform .45s cubic-bezier(.34,1.56,.64,1)}
 .hilo-t .nudo.on,.hilo-m .nudo.on{transform:scale(1)}
 .hilo-t .aguja{transition:opacity .3s}
-@media (min-width:961px){.proceso .proc-cab,.proceso .pasos-f{padding-left:84px}.proceso .proc-cab{gap:34px}}
-.fin-costura{display:block;width:min(100%,24ch);height:20px;margin-top:-14px;overflow:visible;clip-path:inset(-10px 100% -10px 0);transition:clip-path 1.1s cubic-bezier(.6,0,.3,1)}
-.fin-costura.on{clip-path:inset(-10px -12px -10px 0)}
-@media (max-width:960px){.fin-costura{margin-top:-6px;height:14px}}
+@media (min-width:961px){.proceso .proc-cab,.proceso .pasos-f{padding-left:84px}}
 .hilo-m{display:none}
 @media (max-width:960px){
   .hilo-t{display:none}
@@ -1100,8 +1097,8 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
           <linearGradient id="g-aguja" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7d7a76"/><stop offset=".45" stop-color="#f4f2ee"/><stop offset=".6" stop-color="#c9c5bf"/><stop offset="1" stop-color="#6c6965"/></linearGradient>
           <mask id="m-hilo" maskUnits="userSpaceOnUse"><path class="h-rev" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/></mask>
         </defs>
-        <path class="h-sombra" fill="none" stroke="rgba(40,22,12,.22)" stroke-width="3" stroke-dasharray="11 6" stroke-linecap="round" transform="translate(.8 1.6)" mask="url(#m-hilo)"/>
-        <g mask="url(#m-hilo)"><path class="h-base" fill="none" stroke="#4a2a1a" stroke-width="3" stroke-dasharray="11 6" stroke-linecap="round"/><path class="h-luz" fill="none" stroke="#b07f5f" stroke-width="1" stroke-dasharray="11 6" stroke-linecap="round" transform="translate(-.5 -.7)"/></g>
+        <path class="h-sombra" fill="none" stroke="rgba(40,22,12,.16)" stroke-width="2.6" stroke-linecap="round" transform="translate(1.5 2.5)" mask="url(#m-hilo)"/>
+        <g mask="url(#m-hilo)"><path class="h-base" fill="none" stroke="#4a2a1a" stroke-width="2.4" stroke-linecap="round"/><path class="h-luz" fill="none" stroke="#9b6a4c" stroke-width="1" stroke-dasharray="1.6 2.6" stroke-linecap="round"/></g>
         <g class="h-nudos"></g>
         <g class="aguja"><g class="aguja-r"><path d="M-2.1 -4 L-1.6 40 L0 52 L1.6 40 L2.1 -4 Q2.1 -9 0 -9 Q-2.1 -9 -2.1 -4 Z" fill="url(#g-aguja)" stroke="#5d5a56" stroke-width=".4"/><rect x="-.7" y="-6.5" width="1.4" height="6" rx=".7" fill="#e9dccb"/></g></g>
       </svg>
@@ -1120,7 +1117,6 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
     <div class="final-pin marco-pag">
       <div class="final-txt">
         <h2 id="t-fin">Vuelve a su funda.</h2>
-        <svg class="fin-costura" id="fin-costura" viewBox="0 0 400 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 8 C 90 12, 200 4, 300 9 S 380 10, 392 8" fill="none" stroke="#4a2a1a" stroke-width="3" stroke-dasharray="11 6" stroke-linecap="round" vector-effect="non-scaling-stroke"/><path d="M2 8 C 90 12, 200 4, 300 9 S 380 10, 392 8" fill="none" stroke="#b07f5f" stroke-width="1" stroke-dasharray="11 6" stroke-linecap="round" vector-effect="non-scaling-stroke" transform="translate(-.5 -.7)"/><g transform="translate(392 8)"><circle r="5" fill="#4a2a1a"/><circle cx="-1.4" cy="-1.5" r="1.4" fill="#c99878"/></g></svg>
         <p>Tu vestido no se entrega en una bolsa: se va guardado como lo que es, un tesoro hecho a mano. Y cada envase se queda en tu casa.</p>
         <button class="btn" data-ir="reservar">Reservar entrevista</button>
       </div>
@@ -1135,7 +1131,7 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
 
 <div class="hilo-m" id="hilo-m" aria-hidden="true"><svg id="hilo-m-svg"><defs><linearGradient id="g-aguja-m" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#7d7a76"/><stop offset=".45" stop-color="#f4f2ee"/><stop offset=".6" stop-color="#c9c5bf"/><stop offset="1" stop-color="#6c6965"/></linearGradient><mask id="m-hilo-m" maskUnits="userSpaceOnUse"><path class="h-rev" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/></mask></defs>
   <path class="h-guia" fill="none" stroke="rgba(74,42,26,.18)" stroke-width="1.2" stroke-dasharray="3 5"/>
-  <g mask="url(#m-hilo-m)"><path class="h-base" fill="none" stroke="#4a2a1a" stroke-width="2.6" stroke-dasharray="9 5" stroke-linecap="round"/><path class="h-luz" fill="none" stroke="#b07f5f" stroke-width=".9" stroke-dasharray="9 5" stroke-linecap="round" transform="translate(-.4 -.6)"/></g>
+  <g mask="url(#m-hilo-m)"><path class="h-base" fill="none" stroke="#4a2a1a" stroke-width="2.4" stroke-linecap="round"/><path class="h-luz" fill="none" stroke="#9b6a4c" stroke-width="1" stroke-dasharray="1.6 2.6" stroke-linecap="round"/></g>
   <g class="h-nudos"></g>
   <g class="aguja"><g class="aguja-r"><path d="M-2.1 -4 L-1.6 30 L0 40 L1.6 30 L2.1 -4 Q2.1 -9 0 -9 Q-2.1 -9 -2.1 -4 Z" fill="url(#g-aguja-m)" stroke="#5d5a56" stroke-width=".4"/><rect x="-.7" y="-6.5" width="1.4" height="6" rx=".7" fill="#e9dccb"/></g></g>
 </svg></div>
@@ -2579,23 +2575,12 @@ addEventListener("load", medir);
     const mp = $(".marco-pag", sec), base = mp.getBoundingClientRect(), x = parseFloat(getComputedStyle(mp).paddingLeft) + 30;
     const rel = r => ({l: r.left - base.left, r: r.right - base.left, t: r.top - base.top, b: r.bottom - base.top});
     /* sale del título: corre bajo "Estoy en cada etapa." y baja */
-    const offT = el => { let t = 0, n = el; while(n && n !== mp){ t += n.offsetTop; n = n.offsetParent; } return t; };
-    const h2el = $(".proc-cab h2", sec), h2 = rel(rangoTexto(h2el)), corr = (h2el.getBoundingClientRect().top - base.top) - offT(h2el);
-    h2.t -= corr; h2.b -= corr;
-    const ys = lis.map(li => { const h = rel($("h3", li).getBoundingClientRect()); return h.t + Math.min(h.b - h.t, 64) * .42; });
-    const ld = $(".proc-cab .lead", sec), lt = ld ? offT(ld) : h2.b + 34, u = Math.round((h2.b + lt) / 2) + 2;
-    let d = `M${h2.r} ${u} C${h2.r - 60} ${u + 4}, ${h2.l + 40} ${u - 4}, ${h2.l} ${u}`;
-    d += ` C${h2.l - 30} ${u + 2}, ${x} ${u}, ${x} ${u + 50}`;
-    let px = x, py = u + 50;
-    ys.forEach((y, k) => { const dy = y - py, sw = (k % 2 ? 1 : -1) * Math.min(20, dy * .05); d += ` C${px + sw} ${py + dy*.35}, ${x - sw} ${y - dy*.35}, ${x} ${y}`; py = y; });
-    /* termina en "Vuelve a su funda": baja hasta el título y se une a su costura */
-    let fx = x, fy = py + 300;
-    const ft = fin && $(".final-txt h2", fin), pin = fin && $(".final-pin", fin);
-    if(ft && pin && getComputedStyle($(".final-txt", fin)).display !== "none"){
-      const fr = rangoTexto(ft), pr = pin.getBoundingClientRect(), fTop = fin.getBoundingClientRect().top;
-      fx = fr.left - base.left; fy = fTop + (fr.bottom - pr.top) - base.top + 10;
-    }
-    const dy = fy - py; d += ` C${x + 18} ${py + dy*.4}, ${fx - 40} ${fy - 4}, ${fx} ${fy}`;
+    const h2 = $(".proc-cab h2", sec).getBoundingClientRect();
+    const ys = lis.map(li => { const h = $("h3", li).getBoundingClientRect(); return h.top - base.top + Math.min(h.height, 64) * .42; });
+    const y0 = h2.top - base.top + 14, yEnd = ys[ys.length - 1] + 220, fy = yEnd + 40;
+    const pts = [[x, y0], ...ys.map(y => [x, y]), [x, yEnd]];
+    let d = `M${pts[0][0]} ${pts[0][1]}`;
+    for(let k = 1; k < pts.length; k++){ const [x0, y0b] = pts[k-1], [x1, y1] = pts[k], dy = y1 - y0b, sw = (k % 2 ? 1 : -1) * Math.min(20, dy * .05); d += ` C${x0 + sw} ${y0b + dy*.35}, ${x1 - sw} ${y1 - dy*.35}, ${x1} ${y1}`; }
     const H = fy + 40;
     svg.setAttribute("height", H); svg.setAttribute("viewBox", `0 0 ${base.width} ${H}`);
     $$(".h-base, .h-luz, .h-sombra, .h-rev", svg).forEach(p => p.setAttribute("d", d));
@@ -2604,7 +2589,7 @@ addEventListener("load", medir);
     const g = $(".h-nudos", svg); g.innerHTML = "";
     $(".h-rev", svg).setAttribute("stroke-dasharray", `${L} ${L}`);
     /* el tramo bajo el título de arriba ya está cosido al llegar */
-    let l0 = 0; for(let k = 1; k < S.length; k++){ if(pt(ref, S[k][0]).x <= x + 2){ l0 = S[k][0]; break; } }
+    const l0 = 0;
     D = { L, S, ref, ys, l0, nudos: ys.map(y => boton(g, x, y, 9)) };
   }
   function rangoTexto(el){ const r = document.createRange(); r.selectNodeContents(el); const rs = [...r.getClientRects()]; if(!rs.length) return el.getBoundingClientRect();
