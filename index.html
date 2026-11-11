@@ -1102,6 +1102,11 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
   .cap2 .encargo span{max-width:none}
   .cap2 .encargo em{margin-top:4px;font-size:15px}
 }
+
+/* vendido */
+.estado.ven{background:#7a5a3e;color:#fffaf2}
+.prod.vendido .prod-media .pm.a{opacity:.5;filter:grayscale(.5)}
+.prod.vendido .prod-info h3{text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:rgba(19,32,38,.45)}
 </style>
 
 </head><body><header class="cabecera" id="cabecera">
@@ -1410,7 +1415,7 @@ function lamina(v,vista,clase=""){
 /* ---------- datos de ejemplo ---------- */
 const VESTIDOS = [
   {id:"aurora",codigo:"ALT-01",nombre:"Aurora",categoria:"15 años",estado:"Disponible",precio:null,talle:"36 a 40, ajustable",materiales:"Raso duchesse y tul de seda",tipo:"princesa",color:"marfil",foto:"frente",espalda:"espalda",descripcion:"Corset con ballenas y falda amplia en capas de tul. La flor de la cintura está hecha con los retazos del corte, y la espalda se cierra con cordón."},
-  {id:"ofelia",codigo:"ALT-02",nombre:"Ofelia",categoria:"Novias",estado:"Disponible",precio:null,talle:"A medida",materiales:"Satén pesado y encaje",tipo:"sirena",color:"marfil",foto:"sirena",descripcion:"Silueta sirena que se abre a la altura de la rodilla, con encaje fino en el escote."},
+  {id:"ofelia",codigo:"ALT-02",nombre:"Ofelia",categoria:"Novias",estado:"Vendido",precio:null,talle:"A medida",materiales:"Satén pesado y encaje",tipo:"sirena",color:"marfil",foto:"sirena",descripcion:"Silueta sirena que se abre a la altura de la rodilla, con encaje fino en el escote."},
   {id:"noche-de-bulevar",codigo:"ALT-03",nombre:"Noche de Bulevar",categoria:"Egresadas",estado:"Disponible",precio:890000,talle:"38",materiales:"Satén de seda azul noche",tipo:"linea",color:"noche",foto:"noche",descripcion:"Línea A en satén azul noche, escote corazón y un broche plateado que recoge el drapeado."},
   {id:"plata",codigo:"ALT-04",nombre:"Plata",categoria:"Invitadas",estado:"Reservado",precio:640000,talle:"40",materiales:"Lamé mate",tipo:"recta",color:"niebla",foto:"plata",descripcion:"Columna recta con breteles finos y escote caído. Para la invitada que no quiere robar protagonismo, pero sí miradas."},
   {id:"milonga",codigo:"ALT-05",nombre:"Milonga",categoria:"Invitadas",estado:"Disponible",precio:720000,talle:"36",materiales:"Crepe pesado con bordado",tipo:"sirena",color:"pizarra",foto:"milonga",descripcion:"Heredero del vestuario de tango: espalda descubierta, drapeado lateral y bordado. Se ajusta al cuerpo y se mueve con vos."}
@@ -1422,7 +1427,7 @@ const CAPSULAS = [
    claves:["Azul noche, plata y pizarra","Escotes en la espalda","Largos que dejan caminar"], piezas:["noche-de-bulevar","plata","milonga"]},
   {n:"02", nombre:"Marfil", temp:"Novias y 15", tono:"marfil", corto:"Los blancos del atelier, a tu medida.", desc:"Los blancos del atelier: raso duchesse, tul de seda y encaje. Siluetas para el día más grande, que ajusto pieza por pieza.",
    porque:"El marfil no es un blanco puro: es el blanco de las telas nobles cuando les da la luz. Lo elegí porque abriga la piel y cambia con cada vestido, como cambia cada novia y cada quinceañera.",
-   claves:["Raso, tul de seda y encaje","Corsets con ballenas a mano","Cada pieza se ajusta a tu medida"], piezas:["aurora","ofelia"], encargo:true}
+   claves:["Raso, tul de seda y encaje","Corsets con ballenas a mano","Cada pieza se ajusta a tu medida"], piezas:["aurora","ofelia"]}
 ];
 const PROXIMA = {n:"03", nombre:"Tango", estado:"Próximamente", corto:"Vuelvo al vestuario con el que empecé.", desc:"Vuelvo al vestuario con el que empecé: espaldas descubiertas, flecos y vestidos que se mueven cuando bailás.",
   porque:"Antes de vestir novias hice vestuario de tango durante años. Esta cápsula es volver a ese origen: telas que acompañan el giro, cortes que dejan ver la espalda y un largo pensado para el abrazo.",
@@ -2128,7 +2133,7 @@ function pose(){
     const tr = [[0,desde],[.12,finDer],[.16,{...fundaBaja, cx: finDer.cx, cy: fundaVuelve.cy, s: fundaVuelve.s}],[.26,fundaVuelve],[.38,cerrada],[.5,sobreBolso],[.56,medio],[.62,doblada],[.68,adentro],[.74,tapada],[.88,final],[1,final]];
     p = tramo(tr, pf);
     p.vo = pf < .38 ? 1 : 1 - ss(.38,.42,pf);
-    $(".final-txt").style.opacity = m ? ss(.06,.12,pf) : 1;
+    $(".final-txt").style.opacity = m ? ss(.06,.12,pf) : 1 - ss(.7,.78,pf);
     const fe = $("#fin-etq"); fe.style.opacity = ss(.84,.92,pf);
     if(!m){ const r = genF.ry*Math.PI/180, k = U*genF.s;
       [["tubos",L.tx+8,L.tz],["bolso",0,L.bz],["book",L.kx,L.kz]].forEach(([n,x,z]) => { const li = $(`[data-k="${n}"]`, fe); if(li) li.style.left = (genF.cx + (x*Math.cos(r) + z*Math.sin(r))*k).toFixed(0) + "px"; });
@@ -2398,12 +2403,12 @@ function muestras(v, ci, attr){
   return OPC[v.id].colores.map((c,i) => `<button class="muestra" style="--m:${c[2] || c[1]}" aria-label="${esc(c[0])}" aria-pressed="${i===ci}" ${attr}="${v.id}" data-ci="${i}"></button>`).join("");
 }
 function tarjeta(v){
-  const e = eleccion(v.id), res = v.estado === "Reservado";
-  return `<article class="prod" data-id="${v.id}">
+  const e = eleccion(v.id), ven = v.estado === "Vendido", res = v.estado === "Reservado";
+  return `<article class="prod${ven ? " vendido" : ""}" data-id="${v.id}">
     <button class="prod-media" data-ir="vestido" data-param="${v.id}" aria-label="Ver ${esc(v.nombre)}">
       <span class="pm a">${producto(v, e.color)}</span>
       <span class="pm b">${puesta(v)}</span>
-      ${res ? `<span class="estado res">Reservado</span>` : `<span class="estado">Nuevo</span>`}
+      ${ven ? `<span class="estado ven">Vendido</span>` : res ? `<span class="estado res">Reservado</span>` : `<span class="estado">Nuevo</span>`}
     </button>
     <div class="prod-info"><div><span class="cat">${esc(v.categoria)}</span><h3>${esc(v.nombre)}</h3></div><span class="precio">${precioTxt(v)}</span></div>
     <div class="muestras" role="group" aria-label="Colores de ${esc(v.nombre)}">${muestras(v, e.color, "data-mc")}</div>
@@ -2418,7 +2423,7 @@ function tienda(){
       <b>Tu vestido va acá.</b><span>Si ninguno es el tuyo, lo dibujamos juntas desde cero.</span><em>Reservar entrevista</em></button></li>`;
   const caps = CAPSULAS.map(c => {
     const vs = c.piezas.map(id => VESTIDOS.find(v => v.id === id)).filter(Boolean);
-    const libres = vs.filter(v => v.estado !== "Reservado").length;
+    const libres = vs.filter(v => v.estado === "Disponible").length;
     return `<section class="cap cap2" id="cap-${c.n}" aria-labelledby="cap-t-${c.n}">
       <header class="cap-portada ${c.tono === "noche" ? "g-noche" : ""}" data-tono="${c.tono}">
         <span class="cap-n" aria-hidden="true">${c.n}</span>
@@ -2453,7 +2458,7 @@ function tienda(){
 }
 let sl = 0;
 function ficha(){
-  const v = actual, e = eleccion(v.id), o = OPC[v.id], res = v.estado === "Reservado"; sl = 0;
+  const v = actual, e = eleccion(v.id), o = OPC[v.id], res = v.estado !== "Disponible"; sl = 0;
   const vistas = () => [["Producto", producto(v, e.color)], ["Puesto", puesta(v)], ["Espalda", CUT[v.id][1] ? producto(v, e.color, "espalda") : lamina(v,"espalda")], ["Detalle", lamina(v,"detalle")]];
   const chips = (k, arr) => arr.map(x => `<button class="op" data-k="${k}" data-v="${esc(x)}" aria-pressed="${e[k]===x}">${esc(x)}</button>`).join("");
   $("#v-vestido").innerHTML = `<nav class="migas" aria-label="Ubicación"><button data-ir="tienda">Colección</button><span>/</span><button data-ir="tienda" data-cat-ir="${esc(v.categoria)}">${esc(v.categoria)}</button><span>/</span><span aria-current="page">${esc(v.nombre)}</span></nav>
@@ -2470,7 +2475,7 @@ function ficha(){
       <div class="grupo"><div class="g-tit"><b>Tela</b></div><div class="ops">${chips("tela", o.telas)}</div></div>
       <div class="grupo"><div class="g-tit"><b>Largo</b></div><div class="ops">${chips("largo", o.largos)}</div></div>
       <div class="grupo"><div class="g-tit"><b>Escote</b></div><div class="ops">${chips("escote", o.escotes)}</div></div>
-      <div class="acciones"><button class="btn" id="f-agregar" ${res?"disabled":""}>${res ? "Reservado" : "Agregar a mi selección"}</button><a class="btn claro" id="f-wa" target="_blank" rel="noopener" href="#">Consultar por WhatsApp</a></div>
+      <div class="acciones"><button class="btn" id="f-agregar" ${res?"disabled":""}>${res ? v.estado : "Agregar a mi selección"}</button><a class="btn claro" id="f-wa" target="_blank" rel="noopener" href="#">Consultar por WhatsApp</a></div>
       <ul class="garantias"><li>Ajuste a tu medida en el atelier</li><li>Entrega en funda y bolso ALTIVA</li><li>La primera entrevista no tiene costo</li></ul>
       <div class="acordeon">
         <details open><summary>Descripción</summary><p>${esc(v.descripcion)}</p></details>
