@@ -1107,6 +1107,24 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
 .estado.ven{background:#7a5a3e;color:#fffaf2}
 .prod.vendido .prod-media .pm.a{opacity:.5;filter:grayscale(.5)}
 .prod.vendido .prod-info h3{text-decoration:line-through;text-decoration-thickness:1px;text-decoration-color:rgba(19,32,38,.45)}
+
+/* marcos de tela (fotos de Alejandra) */
+.tela-defs{position:absolute;width:0;height:0;overflow:hidden}
+.pre-cartas .carta{background:none;padding:18px;box-shadow:none;isolation:isolate}
+.pre-cartas .carta::before{content:"";position:absolute;inset:0;z-index:-1;
+  background:
+    repeating-linear-gradient(0deg,rgba(120,90,60,.07) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.22) 0 1px,transparent 1px 3px),
+    var(--tex),#e8dbc4;
+  filter:url(#deshilado) drop-shadow(0 26px 30px rgba(19,32,38,.28)) drop-shadow(0 2px 3px rgba(19,32,38,.12))}
+.pre-cartas .carta.c2::before{background:
+    repeating-linear-gradient(0deg,rgba(19,32,38,.08) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.07) 0 1px,transparent 1px 3px),
+    #c9b49a}
+/* pespunte */
+.pre-cartas .carta::after{content:"";position:absolute;inset:8px;border:1.4px dashed rgba(74,42,26,.75);pointer-events:none}
+.pre-cartas .carta img{box-shadow:0 0 0 1px rgba(74,42,26,.18)}
+@media (max-width:960px){.pre-cartas .carta{padding:13px}.pre-cartas .carta::after{inset:6px}}
 </style>
 
 </head><body><header class="cabecera" id="cabecera">
@@ -1165,6 +1183,7 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
   <section class="presento" id="presento" aria-labelledby="t-pre">
     <div class="marco-pag pre-grid">
       <div class="pre-cartas rev">
+        <svg class="tela-defs" width="0" height="0" aria-hidden="true" focusable="false"><filter id="deshilado" x="-6%" y="-6%" width="112%" height="112%"><feTurbulence type="fractalNoise" baseFrequency=".55 .9" numOctaves="2" seed="7" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="7" xChannelSelector="R" yChannelSelector="G"/></filter></svg>
         <figure class="carta c1"><img src="img/g_manos.jpg" width="400" height="496" alt="Manos cosiendo a mano un satén marfil, con una flor de retazos sobre la mesa" loading="lazy"></figure>
         <figure class="carta c2"><img src="img/alejandra.webp" width="600" height="901" alt="Alejandra Prieto acompañando a una novia con un vestido de su autoría" loading="lazy" style="object-position:50% 22%"></figure>
       </div>
