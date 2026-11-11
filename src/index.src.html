@@ -1040,6 +1040,68 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
   #v-tienda .cap-prox{padding:32px 20px;margin-inline:-16px;gap:18px}
   #v-tienda .cap-prox h2{font-size:2.4rem}
 }
+
+/* ===== colección v3: los vestidos primero ===== */
+#v-tienda .col-hero{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 20px;margin-bottom:clamp(28px,4vw,48px)}
+#v-tienda .col-hero h1{font-size:var(--s-head);line-height:1;grid-column:auto}
+#v-tienda .col-lead{grid-column:auto;font-family:var(--display);font-style:italic;text-transform:none;letter-spacing:0;font-size:var(--s-lead);color:var(--pizarra)}
+#v-tienda .col-nav{flex-basis:100%;margin-top:14px;padding-top:16px}
+.cap2{display:grid;grid-template-columns:minmax(220px,1fr) minmax(0,3fr);gap:clamp(16px,2.4vw,36px);align-items:start;margin-bottom:clamp(56px,6vw,88px)}
+.cap-portada{position:sticky;top:calc(var(--header) + 20px);display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:clamp(22px,2.4vw,32px);min-height:clamp(320px,34vw,460px);overflow:hidden}
+.cap-portada[data-tono="marfil"]{background:var(--flor-c),#fffaf2;box-shadow:0 24px 50px -34px rgba(60,36,20,.45)}
+.cap-portada.g-noche{background-position:-200px -120px,0 0}
+.cap-portada .cap-n{font-size:clamp(4.5rem,3rem + 3vw,6.5rem);line-height:.8;margin-bottom:auto;-webkit-text-stroke-color:currentColor}
+.cap-portada .cap-meta{font-size:12px;letter-spacing:.14em;margin:18px 0 0;color:inherit;opacity:.75}
+.cap-portada h2{font-size:var(--s-sub);line-height:1.05}
+.cap-corto{font-size:15px;line-height:1.5;opacity:.85}
+.cap-portada .cap-cuenta{font-size:13px;color:inherit;margin-top:4px}
+.cap-hist{width:100%;margin-top:6px;border-top:1px solid currentColor;border-color:rgba(127,127,127,.35)}
+.cap-hist summary{display:flex;align-items:center;justify-content:space-between;min-height:44px;cursor:pointer;list-style:none;font-size:14px}
+.cap-hist summary::-webkit-details-marker{display:none}
+.cap-hist summary::after{content:"+";font-size:18px;line-height:1}
+.cap-hist[open] summary::after{content:"–"}
+.cap-hist p{font-size:14px;line-height:1.55;opacity:.85;padding-bottom:6px}
+.cap2 .rack{grid-template-columns:repeat(3,minmax(0,1fr));gap:28px clamp(12px,1.6vw,22px)}
+.cap2 .prod-info h3{font-size:var(--s-body)}
+.cap2 .prod-info .cat{font-size:12px}
+.cap-prox{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:16px clamp(20px,3vw,48px);align-items:center;padding:clamp(24px,3vw,40px)}
+.cap-prox .cap-n{font-size:clamp(3.5rem,2rem + 3vw,5.5rem);line-height:.8;-webkit-text-stroke-color:var(--crema)}
+.cap-prox .cap-meta{color:var(--niebla);margin-bottom:4px}
+.cap-prox h2{font-size:var(--s-sub);margin-bottom:6px}
+.cap-prox .cap-hist{max-width:52ch;border-color:rgba(253,244,231,.25)}
+@media (max-width:960px){
+  #v-tienda .col-hero h1{font-size:clamp(2.2rem,10vw,2.8rem)}
+  #v-tienda .col-lead{font-size:1.05rem;letter-spacing:0}
+  .cap2{grid-template-columns:minmax(0,1fr);gap:14px;margin-bottom:44px}
+  .cap-portada{position:static;min-height:0;display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:16px;row-gap:2px;padding:18px 18px 8px;margin-inline:-4px}
+  .cap-portada .cap-n{grid-row:1 / span 3;font-size:4rem;margin:0;align-self:center}
+  .cap-portada .cap-meta{margin:0;font-size:11px}
+  .cap-portada h2{font-size:1.5rem}
+  .cap-corto{font-size:14px}
+  .cap-portada .cap-cuenta,.cap-portada .cap-hist{grid-column:1 / -1}
+  .cap-portada .cap-cuenta{margin-top:10px}
+  .cap2 .rack{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}
+  .cap-prox{grid-template-columns:auto minmax(0,1fr);padding:22px 18px;margin-inline:-16px}
+  .cap-prox .btn{grid-column:1 / -1;justify-self:start}
+  .cap-prox .cap-n{font-size:3.6rem}
+}
+
+/* colección v3 · ajustes */
+.cap-portada .cap-n{-webkit-text-stroke:1.2px var(--noche)}
+.cap-portada.g-noche .cap-n{-webkit-text-stroke-color:var(--crema)}
+.cap2 .rack{margin:0;width:100%}
+#v-tienda .cap-prox{margin-bottom:0}
+.muestra::after{border-color:transparent !important}
+.muestra[aria-pressed="true"]{box-shadow:inset 0 0 0 1px rgba(19,32,38,.18),0 0 0 3px #f6eee2,0 0 0 4.5px var(--noche)}
+@media (max-width:960px){
+  #v-tienda .col-nav{display:none}
+  #v-tienda .col-hero{margin-bottom:22px}
+  .cap2 .encargo{grid-column:1 / -1}
+  .cap2 .encargo button{aspect-ratio:auto;display:grid;grid-template-columns:72px minmax(0,1fr);grid-template-rows:auto auto auto;column-gap:16px;row-gap:2px;align-items:center;justify-items:start;text-align:left;padding:16px 18px}
+  .cap2 .encargo svg{grid-row:1 / span 3;width:72px;margin:0}
+  .cap2 .encargo span{max-width:none}
+  .cap2 .encargo em{margin-top:4px;font-size:15px}
+}
 </style>
 
 <header class="cabecera" id="cabecera">
@@ -1185,9 +1247,8 @@ h1,h2,.esc-tit,.cu-nombre,.alfi-n,.precio-g,.prox strong,.turno .f b{font-family
 <!-- ================= TIENDA ================= -->
 <div id="v-tienda" class="vista pagina marco-pag" hidden>
   <div class="col-hero">
-    <p class="col-kicker">Colección · drops del atelier</p>
     <h1>Cápsulas</h1>
-    <p class="col-lead">Pocas piezas, una sola vez. Cada cápsula sale del atelier con vestidos únicos que después ajusto a tu medida. Cuando se van, no vuelven.</p>
+    <p class="col-lead">Pocas piezas, una sola vez.</p>
     <nav class="col-nav" id="col-nav" aria-label="Cápsulas de la colección"></nav>
   </div>
   <div id="col-caps"></div>
@@ -1356,14 +1417,14 @@ const VESTIDOS = [
 ];
 const CATS = ["Todos","15 años","Egresadas","Novias","Invitadas"];
 const CAPSULAS = [
-  {n:"01", nombre:"Noche de Bulevar", temp:"Drop primavera 2026", desc:"Satén, lamé y crepe para las noches de fiesta. Tres vestidos para egresadas e invitadas que quieren brillar sin disfrazarse.",
+  {n:"01", nombre:"Noche de Bulevar", temp:"Primavera 2026", tono:"noche", corto:"Satén y lamé para noches de fiesta.", desc:"Satén, lamé y crepe para las noches de fiesta. Tres vestidos para egresadas e invitadas que quieren brillar sin disfrazarse.",
    porque:"Mi atelier está en Los Bulevares, en Córdoba. Esta cápsula nació mirando esas noches de verano: el satén azul como el cielo a las once, el lamé como las luces de la avenida y el crepe para bailar hasta tarde.",
    claves:["Azul noche, plata y pizarra","Escotes en la espalda","Largos que dejan caminar"], piezas:["noche-de-bulevar","plata","milonga"]},
-  {n:"02", nombre:"Marfil", temp:"Novias y 15 · siempre abierta", desc:"Los blancos del atelier: raso duchesse, tul de seda y encaje. Siluetas para el día más grande, que ajusto pieza por pieza.",
+  {n:"02", nombre:"Marfil", temp:"Novias y 15", tono:"marfil", corto:"Los blancos del atelier, a tu medida.", desc:"Los blancos del atelier: raso duchesse, tul de seda y encaje. Siluetas para el día más grande, que ajusto pieza por pieza.",
    porque:"El marfil no es un blanco puro: es el blanco de las telas nobles cuando les da la luz. Lo elegí porque abriga la piel y cambia con cada vestido, como cambia cada novia y cada quinceañera.",
    claves:["Raso, tul de seda y encaje","Corsets con ballenas a mano","Cada pieza se ajusta a tu medida"], piezas:["aurora","ofelia"], encargo:true}
 ];
-const PROXIMA = {n:"03", nombre:"Tango", estado:"En el taller", desc:"Vuelvo al vestuario con el que empecé: espaldas descubiertas, flecos y vestidos que se mueven cuando bailás.",
+const PROXIMA = {n:"03", nombre:"Tango", estado:"Próximamente", corto:"Vuelvo al vestuario con el que empecé.", desc:"Vuelvo al vestuario con el que empecé: espaldas descubiertas, flecos y vestidos que se mueven cuando bailás.",
   porque:"Antes de vestir novias hice vestuario de tango durante años. Esta cápsula es volver a ese origen: telas que acompañan el giro, cortes que dejan ver la espalda y un largo pensado para el abrazo.",
   claves:["Flecos y crepe pesado","Espaldas descubiertas","Pocas piezas, numeradas"]};
 const precioTxt = v => v.precio ? "$ " + v.precio.toLocaleString("es-AR") : "Consultar";
@@ -2067,7 +2128,7 @@ function pose(){
     const tr = [[0,desde],[.12,finDer],[.16,{...fundaBaja, cx: finDer.cx, cy: fundaVuelve.cy, s: fundaVuelve.s}],[.26,fundaVuelve],[.38,cerrada],[.5,sobreBolso],[.56,medio],[.62,doblada],[.68,adentro],[.74,tapada],[.88,final],[1,final]];
     p = tramo(tr, pf);
     p.vo = pf < .38 ? 1 : 1 - ss(.38,.42,pf);
-    $(".final-txt").style.opacity = (m ? ss(.06,.12,pf) : 1) * (1 - ss(.7,.78,pf));
+    $(".final-txt").style.opacity = m ? ss(.06,.12,pf) : 1;
     const fe = $("#fin-etq"); fe.style.opacity = ss(.84,.92,pf);
     if(!m){ const r = genF.ry*Math.PI/180, k = U*genF.s;
       [["tubos",L.tx+8,L.tz],["bolso",0,L.bz],["book",L.kx,L.kz]].forEach(([n,x,z]) => { const li = $(`[data-k="${n}"]`, fe); if(li) li.style.left = (genF.cx + (x*Math.cos(r) + z*Math.sin(r))*k).toFixed(0) + "px"; });
@@ -2349,9 +2410,8 @@ function tarjeta(v){
   </article>`;
 }
 function tienda(){
-  const HT = matchMedia("(max-width:960px)").matches ? "details" : "div";
   const vis = $("#v-tienda");
-  $("#col-nav").innerHTML = CAPSULAS.map(c => `<a href="#cap-${c.n}" data-cap="${c.n}"><b>${c.n}</b>${esc(c.nombre)}</a>`).join("") + `<a href="#cap-${PROXIMA.n}" data-cap="${PROXIMA.n}" class="prox-l"><b>${PROXIMA.n}</b>Próxima</a>`;
+  $("#col-nav").innerHTML = CAPSULAS.map(c => `<a href="#cap-${c.n}" data-cap="${c.n}"><b>${c.n}</b>${esc(c.nombre)}</a>`).join("") + `<a href="#cap-${PROXIMA.n}" data-cap="${PROXIMA.n}" class="prox-l"><b>${PROXIMA.n}</b>Tango</a>`;
   const percha = h => `<li class="percha">${h}</li>`;
   const encargo = `<li class="percha encargo"><button type="button" data-ir="contacto" data-param="res">
       <svg viewBox="0 0 120 70" aria-hidden="true"><path d="M60 4 c6 0 9 4 9 8 c0 5 -5 7 -9 9 v6 L112 54 c4 3 2 8 -3 8 H11 c-5 0 -7 -5 -3 -8 L60 27" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -2359,24 +2419,27 @@ function tienda(){
   const caps = CAPSULAS.map(c => {
     const vs = c.piezas.map(id => VESTIDOS.find(v => v.id === id)).filter(Boolean);
     const libres = vs.filter(v => v.estado !== "Reservado").length;
-    return `<section class="cap" id="cap-${c.n}" aria-labelledby="cap-t-${c.n}">
-      <header class="cap-cab">
+    return `<section class="cap cap2" id="cap-${c.n}" aria-labelledby="cap-t-${c.n}">
+      <header class="cap-portada ${c.tono === "noche" ? "g-noche" : ""}" data-tono="${c.tono}">
         <span class="cap-n" aria-hidden="true">${c.n}</span>
-        <div class="cap-tit"><p class="cap-meta">Cápsula ${c.n} · ${esc(c.temp)}</p><h2 id="cap-t-${c.n}">${esc(c.nombre)}</h2></div>
-        <div class="cap-der"><p>${esc(c.desc)}</p><span class="cap-cuenta"><i></i>${vs.length} piezas únicas · ${libres} ${libres === 1 ? "disponible" : "disponibles"}</span></div>
+        <p class="cap-meta">${esc(c.temp)}</p>
+        <h2 id="cap-t-${c.n}">${esc(c.nombre)}</h2>
+        <p class="cap-corto">${esc(c.corto)}</p>
+        <span class="cap-cuenta"><i></i>${libres} de ${vs.length} disponibles</span>
+        <details class="cap-hist"><summary>La historia del nombre</summary><p>${esc(c.porque)}</p></details>
       </header>
-      <${HT} class="cap-historia"><summary>Por qué se llama ${esc(c.nombre)}</summary><p class="cap-porque"><b>Por qué se llama ${esc(c.nombre)}.</b> ${esc(c.porque)}</p><ul class="cap-claves">${c.claves.map(k => `<li>${esc(k)}</li>`).join("")}</ul></${HT}>
       <ul class="rack">${vs.map(v => percha(tarjeta(v))).join("")}${c.encargo ? encargo : ""}</ul>
     </section>`;
   }).join("");
   const prox = `<section class="cap cap-prox g-noche" id="cap-${PROXIMA.n}" aria-labelledby="cap-t-${PROXIMA.n}">
+      <span class="cap-n" aria-hidden="true">${PROXIMA.n}</span>
       <div class="prox-txt">
-        <p class="cap-meta">Cápsula ${PROXIMA.n} · ${esc(PROXIMA.estado)}</p>
+        <p class="cap-meta">${esc(PROXIMA.estado)}</p>
         <h2 id="cap-t-${PROXIMA.n}">${esc(PROXIMA.nombre)}</h2>
-        <p>${esc(PROXIMA.desc)}</p>
-        <a class="btn" target="_blank" rel="noopener" href="${wa("Hola Alejandra, quiero que me avises cuando salga la cápsula Tango.")}">Avisame cuando salga</a>
+        <p class="cap-corto">${esc(PROXIMA.corto)}</p>
+        <details class="cap-hist"><summary>La historia del nombre</summary><p>${esc(PROXIMA.porque)}</p></details>
       </div>
-      <${HT} class="prox-hist"><summary>Por qué se llama Tango</summary><p class="cap-porque"><b>Por qué se llama Tango.</b> ${esc(PROXIMA.porque)}</p><ul class="cap-claves">${PROXIMA.claves.map(k => `<li>${esc(k)}</li>`).join("")}</ul></${HT}>
+      <a class="btn" target="_blank" rel="noopener" href="${wa("Hola Alejandra, quiero que me avises cuando salga la cápsula Tango.")}">Avisame cuando salga</a>
     </section>`;
   $("#col-caps").innerHTML = caps + prox;
   $("#col-nav").onclick = e => { const a = e.target.closest("[data-cap]"); if(!a) return; e.preventDefault(); const t = $("#cap-" + a.dataset.cap); if(t) scrollTo({top: t.getBoundingClientRect().top + scrollY - parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header")) - 20, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}); };
