@@ -1784,33 +1784,54 @@ const E3 = {ok:false};
     return g;
   }
 
-  /* ---------- tubos de kraft con faja ---------- */
+  /* ---------- tubos de cartón con faja: grande y chico verdes, mediano negro (como los prototipos) ---------- */
   function tubos(){
     const g = new T.Group();
-    const kraft = new T.MeshPhysicalMaterial({color:0xC49A6C, roughness:.88, bumpMap:PAPEL, bumpScale:.5, sheen:.3});
-    const fajas = [["#22413A","#F3EADB"],["#F1E8D8","#22313A"],["#1C2B3A","#F3EADB"]];
-    const R = [5, 7, 9], H = [13.5, 17.5, 22], X = [-21, -5, 14];
+    const verde = new T.MeshPhysicalMaterial({color:0x3B5B44, roughness:.9, bumpMap:PAPEL, bumpScale:.35, sheen:.25});
+    const negro = new T.MeshPhysicalMaterial({color:0x1F1F1F, roughness:.86, bumpMap:PAPEL, bumpScale:.35, sheen:.2});
+    const r = 7.2, PXU = 1024/(2*Math.PI*r);
+    /* medidas tomadas de la foto de los prototipos: alto, tapa, centro y alto de la faja (fracciones del alto),
+       y la puesta de la faja en px de textura (el frente mira a u = 256) */
+    const D = [
+      {h:22.2, lid:.22, bc:.42, bh:.225, mat:verde, bg:"#213C36", fg:"#EEF0EC", x:-18,  z:0, L:[85,271],  dv:299, tx:323, fs:17},
+      {h:16.6, lid:.31, bc:.47, bh:.42,  mat:negro, bg:"#E9E1D3", fg:"#0F241F", x:-1.5, z:0, L:[90,258],  dv:292, tx:316, fs:17},
+      {h:12.1, lid:.32, bc:.41, bh:.36,  mat:verde, bg:"#213C36", fg:"#EEF0EC", x:15,   z:0, L:[111,259], dv:292, tx:313, fs:16}];
     let logo = null; const pend = [];
-    cargar("img/logo_full.webp", (t, im) => { logo = im; pend.forEach(f => f()); });
-    for(let k = 0; k < 3; k++){
-      const r = R[k], h = H[k], t = new T.Group(); t.position.set(X[k], 0, k === 1 ? 6 : 0);
-      const cuerpo = new T.Mesh(new T.CylinderGeometry(r, r, h*.82, 48, 1, true), kraft); cuerpo.position.y = h*.41; t.add(cuerpo);
-      const tapaT = new T.Mesh(new T.CylinderGeometry(r*1.035, r*1.035, h*.24, 48), kraft); tapaT.position.y = h*.88; t.add(tapaT);
-      const fondoT = new T.Mesh(new T.CircleGeometry(r, 32), kraft); fondoT.rotation.x = -Math.PI/2; fondoT.position.y = .05; t.add(fondoT);
-      const [bg, fg] = fajas[k];
-      const ftx = lienzoTx(1024, 256, (x, w, hh) => { x.fillStyle = bg; x.fillRect(0,0,w,hh); });
-      const dib = () => { const x = ftx.image.getContext("2d"), w = 1024, hh = 256; x.fillStyle = bg; x.fillRect(0,0,w,hh);
-        const lw = 230, lh = lw*logo.height/logo.width, cx = w*.25; const tmp = document.createElement("canvas"); tmp.width = lw; tmp.height = lh; const tx = tmp.getContext("2d"); tx.drawImage(logo,0,0,lw,lh); tx.globalCompositeOperation = "source-in"; tx.fillStyle = fg; tx.fillRect(0,0,lw,lh);
-        x.drawImage(tmp, cx - lw/2 - 40, hh/2 - lh/2);
-        x.fillStyle = fg; x.fillRect(cx + 110, 60, 2, 136);
-        x.font = "34px 'Century Gothic Pro', Questrial, sans-serif"; x.fillText("Accesorios", cx + 135, 100); x.fillText("de Autor", cx + 135, 140); x.font = "26px 'Century Gothic Pro', Questrial, sans-serif"; x.fillText("Herencia viva", cx + 135, 186);
+    cargar("img/logo_word.webp", (t, im) => { logo = im; pend.forEach(f => f()); });
+    D.forEach(d => {
+      const h = d.h, t = new T.Group(); t.position.set(d.x, 0, d.z);
+      const hb = h*(1 - d.lid) + .3;
+      const cuerpo = new T.Mesh(new T.CylinderGeometry(r, r, hb, 56, 1, true), d.mat); cuerpo.position.y = hb/2; t.add(cuerpo);
+      const tapa = new T.Mesh(new T.CylinderGeometry(r*1.03, r*1.03, h*d.lid, 56), d.mat); tapa.position.y = h - h*d.lid/2; t.add(tapa);
+      const fondo = new T.Mesh(new T.CircleGeometry(r, 40), d.mat); fondo.rotation.x = -Math.PI/2; fondo.position.y = .05; t.add(fondo);
+      const hh = Math.round(d.bh*h*PXU), S = 2, CH = 256;   /* lienzo en potencia de 2: si no, WebGL lo pinta negro */
+      const ftx = lienzoTx(1024*S, CH, (x, w, H) => { x.fillStyle = d.bg; x.fillRect(0,0,w,H); });
+      const dib = () => {
+        const x = ftx.image.getContext("2d"); x.setTransform(S,0,0,CH/hh,0,0);
+        x.fillStyle = d.bg; x.fillRect(0,0,1024,hh);
+        const fam = "'Century Gothic Pro', 'Century Gothic', Questrial, sans-serif";
+        /* logo + "Alejandra Prieto" */
+        const lw = d.L[1] - d.L[0], lh = lw*logo.height/logo.width, sub = d.fs*.92, blk = lh + 6 + sub;
+        const y0 = hh/2 - blk/2;
+        const tmp = document.createElement("canvas"); tmp.width = Math.ceil(lw*S); tmp.height = Math.ceil(lh*S*CH/hh/S*2);
+        const tc = tmp.getContext("2d"); tc.drawImage(logo, 0, 0, tmp.width, tmp.height); tc.globalCompositeOperation = "source-in"; tc.fillStyle = d.fg; tc.fillRect(0,0,tmp.width,tmp.height);
+        [[0,0],[.6,0],[-.3,0],[.15,.35],[.15,-.35]].forEach(([ox,oy]) => x.drawImage(tmp, d.L[0] + ox, y0 + oy, lw, lh));   /* doble pasada: el trazo fino del logo no se pierde en el tubo */
+        x.fillStyle = d.fg; x.textBaseline = "alphabetic";
+        x.font = `700 ${sub}px ${fam}`; x.fillText("Alejandra Prieto", d.L[0] + lw*.02, y0 + lh + 6 + sub*.8);
+        /* separador */
+        x.fillRect(d.dv, hh/2 - Math.min(hh*.36, 38), 2.2, Math.min(hh*.72, 76));
+        /* textos */
+        const lh2 = d.fs*1.18, tb = lh2*2 + d.fs*.55 + d.fs*.9, t0 = hh/2 - tb/2;
+        x.font = `700 ${d.fs}px ${fam}`; x.fillText("Accesorios", d.tx, t0 + d.fs*.85); x.fillText("de autor.", d.tx, t0 + lh2 + d.fs*.85);
+        x.font = `700 ${d.fs*.9}px ${fam}`; x.fillText("Herencia viva", d.tx, t0 + lh2*2 + d.fs*.55 + d.fs*.8);
         ftx.needsUpdate = true; };
-      if(logo) dib(); else pend.push(dib);
-      const faja = new T.Mesh(new T.CylinderGeometry(r*1.006, r*1.006, h*.32, 48, 1, true), new T.MeshPhysicalMaterial({map:ftx, roughness:.6}));
-      faja.position.y = h*.42; faja.rotation.y = -Math.PI/2; t.add(faja);
-      t.add(Object.assign(sombra(r*3.4, r*3.4), {}));
+      const listo = () => { dib(); if(document.fonts && document.fonts.ready) document.fonts.ready.then(dib); };
+      if(logo) listo(); else pend.push(listo);
+      const faja = new T.Mesh(new T.CylinderGeometry(r*1.006, r*1.006, d.bh*h, 56, 1, true), new T.MeshStandardMaterial({map:ftx, roughness:.95, metalness:0, envMapIntensity:.25}));
+      ftx.anisotropy = 8; faja.position.y = d.bc*h; faja.rotation.y = -Math.PI/2; t.add(faja);
+      t.add(sombra(r*3.4, r*3.4));
       g.add(t);
-    }
+    });
     return g;
   }
 
@@ -2218,7 +2239,7 @@ function arrancar(){ if(!anima){ anima = true; requestAnimationFrame(bucle); } }
     ["¿Puedo llevar una foto o una idea?","Sí, me encanta. La charlamos, la dibujamos y la hacemos tuya, pensada para tu cuerpo."],
     ["¿Vestís también a madrinas y mamás?","Sí. Trabajo para mujeres de todas las edades: quinceañeras, egresadas, novias, madrinas, mamás y abuelas."],
     ["¿Puedo comprar un vestido ya hecho?","Sí. Algunos de mis vestidos están disponibles para ajustarlos a tu medida. Elegilos en la colección y consultame por WhatsApp."],
-    ["¿Cómo me lo entregás?","En una funda de lienzo con tu nombre en la ventana, guardada en un bolso de pana. Los corsets van en un book negro y los accesorios en tubos de kraft. Todos se pueden reutilizar en tu casa."],
+    ["¿Cómo me lo entregás?","En una funda de lienzo con tu nombre en la ventana, guardada en un bolso de pana. Los corsets van en un book negro y los accesorios en tubos con faja, verdes y negros. Todos se pueden reutilizar en tu casa."],
     ["¿Dónde queda el atelier?","En Los Bulevares, zona norte de Córdoba. La dirección está en la página Escribime."]
   ];
   const COL = ["#7A2432","#1E2A47","#C9A76A","#1F4234","#5B6A6E","#B6975A","#2B3A44","#9a6b4f"];
